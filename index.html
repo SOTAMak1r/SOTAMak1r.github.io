@@ -82,6 +82,26 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
+          3D generative AI presents an innovative and effective approach to crafting a large-scale 3D content base.
+          Existing 3D generation works primarily concentrate on devising methods for producing high-fidelity 3D assets. 
+          Yet, in practice, practitioners seek not only quality but also the capacity to generate content with intricate descriptions 
+          and easy editing, which current methods fail to accommodate.
+          </p>
+          <p>
+          In this paper, we propose a novel pipeline for scene-level 3D generation, which is, to the best of our knowledge, 
+          the first <span class="dnerf">controllable</span> and <span class="dnerf">editable</span> method without pre-defined 3D structures.
+          Specifically, given a pre-defined prompt as a control condition, such as a descriptive sentence or a design image, 
+          the proposed method can synthesize a 3D scene that meets the given requirements such as artistic style and scene arrangement. 
+          Upon completion of the generation, creators can effortlessly modify the generated 3D scene, 
+          significantly streamlining the process of attaining the desired 3D scenes.
+          The key to our proposed pipeline lies in formulating the 3D scene generation problem as a two-stage generation problem 
+          and leveraging an off-the-shelf mask segmentation model (SAM) to decompose the intermediate 2D image into a layered image representation.
+          Extensive experiments demonstrate that the proposed pipeline is highly adept at generating high-quality, 
+          editable 3D scenes in accordance with user prompts.
+          Code will be released upon acceptance.
+
+
+          <p>
             We present the first method capable of photorealistically reconstructing a non-rigidly
             deforming scene using photos/videos captured casually from mobile phones.
           </p>
