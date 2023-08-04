@@ -38,6 +38,15 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <style>
+    .red-text {
+      color: red;
+    }
+    .blue-text {
+      color: blue;
+    }
+  </style>
 </head>
 
 
@@ -136,21 +145,24 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-
+    <h2 class="title">Scene Generation</h2>
     <div class="columns is-centered">
 
       <!-- Visual Effects. -->
       <div class="column">
         <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
+          <!-- <h2 class="title is-3">Visual Effects</h2> -->
+          <!-- <p>
             Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
             would be impossible without nerfies since it would require going through a wall.
-          </p>
+          </p> -->
           <!-- <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
             <source src="./static/videos/dollyzoom-stacked.mp4"
                     type="video/mp4">
           </video> -->
+          <p>
+            <p class="red-text">A living room</p> in style of <p class="blue-text">LEGO</p>
+          </p>
           <img src="./static/gifs/lego.gif"
                  class="interpolation-image"
                  alt="Interpolation end reference image."/>
@@ -160,12 +172,11 @@
 
       <!-- Matting. -->
       <div class="column">
-        <h2 class="title is-3">Matting</h2>
+        <!-- <h2 class="title is-3">Matting</h2> -->
         <div class="columns is-centered">
           <div class="column content">
             <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
+              <p class="red-text">A living room</p> in style of <p class="blue-text">LEGO</p>
             </p>
             <!-- <video id="matting-video" controls playsinline height="100%">
               <source src="./static/videos/matting.mp4"
@@ -178,6 +189,26 @@
 
         </div>
       </div>
+
+      <div class="column">
+        <!-- <h2 class="title is-3">Matting</h2> -->
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              <p class="red-text">A living room</p> in style of <p class="blue-text">LEGO</p>
+            </p>
+            <!-- <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/matting.mp4"
+                      type="video/mp4">
+            </video> -->
+            <img src="./static/gifs/lego.gif"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."/>
+          </div>
+
+        </div>
+      </div>
+      
     </div>
     <!--/ Matting. -->
 
