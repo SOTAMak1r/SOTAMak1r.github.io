@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-L86Q9J5K4M"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-L86Q9J5K4M');
+		</script>
+		<title>GigaGS</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		
+		<link rel="icon" href="resources/icon.jpg">
+		<link rel="stylesheet" href="assets/css/bootstrap-4.4.1.css">
+		<!-- <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/codemirror.min.css">
+		<link rel="stylesheet" href="assets/css/app.css"> -->
+		<link rel="stylesheet" href="assets/css/dics.original.css">
+		<link rel="stylesheet" href="assets/css/index.css">
+		<link rel="stylesheet" href="assets/css/main.css">
+
+		<!-- <script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/codemirror.min.js"></script>
+		<script src="assets/js/clipboard.min.js"></script>
+		<script src="assets/js/video_comparison.js"></script>
+		<script src="assets/js/app.js"></script> -->
+		<script src="assets/js/event_handler.js"></script>
+    	<script src="assets/js/dics.original.js"></script>
+		<!-- <script src="assets/js/bootstrap.min.js"></script> -->
+
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	
+	<body class="is-preload">
+		<div id="video-container">
+			<video autoplay muted loop id="video1">
+				<source src="videos/teaser_.mp4" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+			<div id="overlay"></div>
+		</div>
+
+			<div id="wrapper" class="fade-in">
+					<div id="intro">
+						<h1>GigaGS<br /></h1>
+						<h2>Scaling up Planar-Based 3D Gaussians for Large Scene Surface Reconstruction</h2>
+
+						<p style="font-size:1.2rem;">
+							<!-- Chen Hou<sup>1</sup>, Guoqiang Wei<sup>2</sup>, Yan Zeng<sup>2</sup>, Zhibo Chen<sup>1</sup> -->
+							<a style="text-decoration:none" href="https://scholar.google.com/citations?hl=zh-CN&user=BXL9nMgAAAAJ/">Junyi Chen <sup>1,2 *</sup> </a> ,
+							<a style="text-decoration:none" href="https://scholar.google.com/citations?hl=zh-CN&user=BXL9nMgAAAAJ/">Weicai Ye  <sup>2,3 *</sup> </a> ,
+							<a style="text-decoration:none" href="https://scholar.google.com/citations?hl=zh-CN&user=BXL9nMgAAAAJ/">Yifan Wang <sup>2</sup> </a> ,
+							<a style="text-decoration:none" href="https://scholar.google.com/citations?hl=zh-CN&user=BXL9nMgAAAAJ/">Danpeng Chen <sup>2</sup> </a> ,
+							<br>
+							<a style="text-decoration:none" href="https://scholar.google.com/citations?hl=zh-CN&user=BXL9nMgAAAAJ/">Di Huang <sup>2</sup> </a> ,
+							<a style="text-decoration:none" href="https://scholar.google.com/citations?hl=zh-CN&user=BXL9nMgAAAAJ/">Wanli Ouyang <sup>2</sup> </a> ,
+							<a style="text-decoration:none" href="https://scholar.google.com/citations?hl=zh-CN&user=BXL9nMgAAAAJ/">Guofeng Zhang <sup>3</sup> </a> ,
+							<a style="text-decoration:none" href="https://scholar.google.com/citations?hl=zh-CN&user=BXL9nMgAAAAJ/">Yu Qiao <sup>2</sup> </a> ,
+							<a style="text-decoration:none" href="https://scholar.google.com/citations?hl=zh-CN&user=BXL9nMgAAAAJ/">Tong He <sup>2</sup> </a>
+						</p>
+						<br>
+						<p style="font-size:medium;">
+							<sup>1</sup>Shanghai Jiao Tong University, <sup>2</sup> Shanghai AI Lab, <sup>3</sup> Zhejiang University
+						</p>
+						
+						<!-- <header class="major">
+						</header> -->
+						<header id="header">
+							<!-- <a class="logo">GigaGS</a> -->
+							<div class="container">
+								<div class="box">
+									<a class="smalllogo" href="https://scholar.google.com/citations?hl=zh-CN&user=BXL9nMgAAAAJ/">Paper</a> 
+								</div>
+								<div class="box">
+									<a class="smalllogo" href="https://scholar.google.com/citations?hl=zh-CN&user=BXL9nMgAAAAJ/">Meshes</a> 
+								</div>
+								<div class="box">
+									<a class="smalllogo" href="https://scholar.google.com/citations?hl=zh-CN&user=BXL9nMgAAAAJ/">Code</a> 
+								</div>
+							  </div>
+						</header>
+						<!-- <ul class="actions">
+							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+						</ul> -->
+
+					</div>
+
+					
+					
+					<div id="main">
+							<article class="post featured">
+								<!-- <header class="minor">
+									<p>A robust, plug-and-play solution to offer camera control for video diffusion models.</p>
+								</header> -->
+								<!-- <h2> Method </h2>
+								<video class="lazy" autoplay muted loop id="method_video" width="100%">
+									<source data-src="videos/method.mp4" type="video/mp4">
+									Your browser does not support the video tag.
+								</video>
+								<b> CamTrol includes two-stage process. 
+									In stage I, camera movements are modeled through explicit 3D point cloud, leading to renderings indicating specific camera motion. 
+									In stage II, layout prior of noisy latents are utilized to guide video generation.</b>
+								<header class="major">
+								</header> -->
+
+								<h2>Abstract</h2>
+
+								<div class="row">
+									<p class="text-justify">
+									<!-- <p>A robust, plug-and-play solution to offer camera control for video diffusion models.</p> -->
+										3D Gaussian Splatting (3DGS) has shown promising performance in novel view synthesis. 
+										Previous methods adapt it to obtaining surfaces of either individual 3D objects or within limited scenes. 
+										In this paper, we make the first attempt to tackle the challenging task of large-scale scene surface reconstruction. 
+										This task is particularly difficult due to the high GPU memory consumption, different levels of details for geometric representation, and noticeable inconsistencies in appearance. 
+										To this end, we propose <strong>GigaGS</strong>, the first work for high-quality surface reconstruction for large-scale scenes using 3DGS.
+										<strong>GigaGS</strong> first applies a partitioning strategy based on the mutual visibility of spatial regions, which effectively grouping cameras for parallel processing. 
+										To enhance the quality of the surface, we also propose novel multi-view photometric and geometric consistency constraints based on Level-of-Detail representation. 
+										In doing so, our method can reconstruct detailed surface structures. Comprehensive experiments are conducted on various datasets. 
+										The consistent improvement demonstrates the superiority of <strong>GigaGS</strong>. 
+									</p>
+								</div>
+
+								<header class="major">
+								</header>
+
+								<h2>Comparison</h2>
+								<div class="row">
+									<p class="text-justify">
+										Here, we present the qualitative comparison results of Ground Truth, GigaGS (Ours), SuGaR and Neuralangelo.
+									</p>
+								</div>
+
+								<br>
+
+								<div class="nav-blok">
+									<ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon">
+										<li class="nav-item">
+											<a class="nav-link" onclick="objectSceneEvent(0)">sci-art</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" onclick="objectSceneEvent(1)">residence</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" onclick="objectSceneEvent(2)">campus</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link  active" onclick="objectSceneEvent(3)">rubble</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" onclick="objectSceneEvent(4)">building</a>
+										</li>
+									</ul>
+									<div class="b-dics" style="width: 2600px; font-weight: 800;">
+										<img src="resources/render/rubble/gt.png" alt="GT">
+										<img src="resources/render/rubble/ours.png" alt="Ours">
+										<img src="resources/render/rubble/sugar.png" alt="SuGaR">
+										<img src="resources/render/rubble/neuralangelo.png" alt="Neuralangelo">
+									</div>
+								</div>
+
+								<header class="major">
+								</header>
+								
+								<div class="nav-blok">
+									<ul class="nav nav-tabs nav-fill nav-justified" id="object-scale-recon-normal">
+										<li class="nav-item">
+											<a class="nav-link" onclick="objectSceneEventnormal(0)">sci-art</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" onclick="objectSceneEventnormal(1)">residence</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" onclick="objectSceneEventnormal(2)">campus</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link active" onclick="objectSceneEventnormal(3)">rubble</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" onclick="objectSceneEventnormal(4)">building</a>
+										</li>
+									</ul>
+									<div class="b-dics" style="width: 2600px; font-weight: 800;">
+										<!-- <img src="resources/normal/building/gt.png" alt="GT"> -->
+										<img src="resources/normal/building/ours.png" alt="Ours">
+										<img src="resources/normal/building/sugar.png" alt="SuGaR">
+										<img src="resources/normal/building/neuralangelo.png" alt="Neuralangelo">
+									</div>
+								</div>
+
+								<header class="major">
+								</header>
+
+
+								<h2>Citation</h2>
+
+								<div class="row">
+									<textarea rows="8" id="bibtex" class="form-control" readonly>
+@article{verbin2022refnerf,
+		title={{Ref-NeRF}: Structured View-Dependent Appearance for
+		Neural Radiance Fields},
+		author={Dor Verbin and Peter Hedman and Ben Mildenhall and
+		Todd Zickler and Jonathan T. Barron and Pratul P. Srinivasan},
+		journal={CVPR},
+		year={2022}
+}
+									</textarea>
+								</div>
+								
+
+								<header class="major">
+								</header>
+
+								<h2>Acknowledgements</h2>
+
+								<b>
+									The website template was borrowed from <a href="https://lifedecoder.github.io/CamTrol/">CamTrol</a>.
+									We also incorporated design elements from <a href="https://pixelgs.github.io/">Pixel-GS</a>.
+								</b>
+								
+								
+								<!-- <p style="text-align: center;"><i>Paper: </i> <a href="https://arxiv.org/abs/2406.10126" target="_blank">https://arxiv.org/abs/2406.10126</a></p> -->
+								<!-- <a href="#" class="icon fas fa-file-pdf"></a> -->
+							</article>
+					</div>
+
+					<div id="copyright">
+						<!-- <ul><li>&copy; CamTrol</li></ul> -->
+					</div>
+
+			</div>
+
+			<script src="assets/js/index.js"></script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
