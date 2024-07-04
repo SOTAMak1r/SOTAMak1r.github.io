@@ -1,0 +1,414 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="GVGEN:Text-to-3D Generation with Volumetric Representation">
+  <meta name="keywords" content="diffusion, 3dgs">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GVGEN:Text-to-3D Generation with Volumetric Representation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/style.css">
+
+  <link rel="icon" href="./sources/images/favicon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <style>
+    .video-margin {
+      margin-bottom: 20px; 
+    }
+  </style>
+  <style>
+  .reduce-space {
+    margin-bottom: -100px;  
+  }
+</style>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="reduce-space">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <!-- <h1 class="title is-1 publication-title">
+            <span class='main-title'>GVGEN:</span> <span class="sub-title"> Text-to-3D Generation with Volumetric Representation</span>
+          </h1> -->
+          <h1 class="title is-1 publication-title jumbotron-heading">
+            <span class='main-title' id="name">GVGEN</span>: Text-to-3D Generation with Volumetric Representation
+          </h1>
+          
+          <div id="venue">
+            European Conference on Computer Vision (<b>ECCV</b>), 2024<br>
+            <!-- <span id="highlight">HIGHLIGHT</span> -->
+          </div>
+
+          <br>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=jKFeol0AAAAJ">Xianglong He*</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=BXL9nMgAAAAJ">Junyi Chen*</a><sup>1,3</sup>,</span>
+            <span class="author-block">
+              <a href="https://pengsida.net/">Sida Peng</a><sup>4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://dihuang.me/">Di Huang</a><sup>1</sup>,
+            </span>
+            <br>
+            <span class="author-block">
+              <a href="https://yg256li.github.io/">Yangguang Li</a><sup>5</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://xiaoshuihuang.github.io/">Xiaoshui Huang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=fYdxi2sAAAAJ">Chun Yuan†</a><sup>2</sup>,
+            </span>
+            </span>
+            <span class="author-block">
+              <a href="https://wlouyang.github.io/">Wanli Ouyang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://tonghe90.github.io/">Tong He†</a><sup>1</sup>
+            </span>
+          </div>
+          <br>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Shanghai AI Lab,</span>
+            <span class="author-block"><sup>2</sup>Tsinghua Shenzhen International Graduate School,</span>
+            <span class="author-block"><sup>3</sup>Shanghai Jiao Tong University,</span>
+            <span class="author-block"><sup>4</sup>Zhejiang University,</span>
+            <span class="author-block"><sup>5</sup>VAST</span>
+            <br>
+            <span class="author-block"><sup>*</sup>Equal Contributions</span>
+            <span class="author-block"><sup>†</sup>Corresponding Authors</span>
+            <br>
+          </div>
+
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2403.12957"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- PDF Link. -->
+<!--              <span class="link-block">-->
+<!--                <a href="index.html"-->
+<!--                   class="external-link button is-normal is-rounded is-dark">-->
+<!--                  <span class="icon">-->
+<!--                      <i class="fas fa-file-pdf"></i>-->
+<!--                  </span>-->
+<!--                  <span>Paper</span>-->
+<!--                </a>-->
+<!--              </span>-->
+            <!--  
+            <span class="link-block">
+                <a href="index.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            -->
+  
+              <!-- Video Link. -->
+              <!--
+              <span class="link-block">
+                <a href="index.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              -->
+              <!-- Code Link. -->
+
+              <span class="link-block">
+                <a href="https://github.com/SOTAMak1r/GVGEN"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+              <!-- Dataset Link. -->
+<!--              <span class="link-block">-->
+<!--                <a href="https://github.com/google/nerfies/releases/tag/0.1"-->
+<!--                   class="external-link button is-normal is-rounded is-dark">-->
+<!--                  <span class="icon">-->
+<!--                      <i class="far fa-images"></i>-->
+<!--                  </span>-->
+<!--                  <span>Data</span>-->
+<!--                  </a>-->
+<!--              </span>-->
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="rows is-centered">
+        <figure>
+          <video id="r10k" autoplay muted loop playsinline width="100%">
+            <source src="sources/videos/gvgen_teaser.mp4" type="video/mp4">
+          </video>
+          <figcaption class="tagline">
+            GVGEN possesses a fast generation speed <b>(~7 seconds)</b>, effectively striking a balance between quality and efficiency.
+          </figcaption>
+        </figure>
+        <h2 class="title is-3 has-text-centered">Abstract</h2>
+        <div class="content has-text-justified">
+          In recent years, 3D Gaussian splatting has emerged as a powerful technique for 3D reconstruction and generation, known for its fast and high-quality rendering capabilities.
+          Nevertheless, these methods often come with limitations, either lacking the ability to produce diverse samples or requiring prolonged inference times. 
+          To address these shortcomings, this paper introduces a novel diffusion-based framework, GVGEN, designed to efficiently generate 3D Gaussian representations from text input. 
+          We propose two innovative techniques:
+          <strong>(1) Structured Volumetric Representation. </strong>We first arrange disorganized 3D Gaussian points as a structured form GaussianVolume. 
+          This transformation allows the capture of intricate texture details within a volume composed of a fixed number of Gaussians. 
+          To better optimize the representation of these details, we propose a unique pruning and densifying method named the Candidate Pool Strategy, enhancing detail fidelity through selective optimization.
+          <strong>(2) Coarse-to-fine Generation Pipeline. </strong>To simplify the generation of GaussianVolume and empower the model to generate instances with detailed 3D geometry, we propose a coarse-to-fine pipeline. 
+          It initially constructs a basic geometric structure, followed by the prediction of complete Gaussian attributes.
+          Our framework, GVGEN, demonstrates superior performance in qualitative and quantitative assessments compared to existing 3D generation methods. 
+          Simultaneously, it maintains a fast generation speed (~7 seconds), effectively striking a balance between quality and efficiency.
+        </div>
+        <br> 
+
+        <div style="text-align: center;">
+          <img src="./sources/images/pipeline.png" alt="pipeline" width="90%" >
+        </div>
+        <p><strong>Fig. 1: Overview of GVGEN.</strong> 
+        Our framework comprises two stages.
+        In the data pre-processing phase, we fit GaussianVolumes and extract coarse geometry Gaussian Distance Field (GDF) as training data.
+        For the generation stage, we first generate GDF via a diffusion model, 
+        and then send it into a 3D U-Net to predict attributes of GaussianVolumes.
+    </div>
+    <!--/ Abstract. -->
+  </div>
+  <br>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Text-to-3D Results</h2>
+    </div>
+
+
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="columns is-centered has-text-centered">
+          <div class="column content">
+            <video id="matting-video" autoplay muted loop playsinline width="100%">
+              <source src="sources/videos/results.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Comparisons</h2>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="columns is-centered has-text-centered">
+          <div class="column content">
+            <video id="matting-video" autoplay muted loop playsinline width="100%">
+              <source src="sources/videos/comparisons.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Generation Diversity</h2>
+      <p></p>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="columns is-centered has-text-centered">
+          <div class="column content">
+            <video id="matting-video" autoplay muted loop playsinline width="100%">
+              <source src="sources/videos/diversity.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Integration with Existing Methods</h2>
+    </div>
+
+    <div class="content has-text-justified">
+      With recent text-to-3D optimization-based methods like <a href="https://github.com/gsgen3d/gsgen">GSGEN</a>,
+      the generated assets can be further refined and are more aligned with text descriptions in terms of texture and geometry than previous works.
+      The left column represents rendering results initialized with different methods, and the right column stands for rendering results after optimization with GSGEN.
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="columns is-centered has-text-centered">
+          <div class="column content">
+            <video id="matting-video" autoplay muted loop playsinline width="100%">
+              <source src="sources/videos/gsgen.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">GaussianVolume Fitting Results</h2>
+      <p></p>
+    </div>
+    
+    <div class="content has-text-justified">
+      To balance between training cost and performance, we fit GaussianVolumes at a resolution of 32 as our training data.
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="columns is-centered has-text-centered">
+          <div class="column content">
+            <video id="matting-video" autoplay muted loop playsinline height="100%">
+              <source src="sources/videos/fitting.mp4" type="video/mp4">
+            </video>
+            <video id="matting-video" autoplay muted loop playsinline height="100%">
+              <source src="sources/videos/fitting2.mp4" type="video/mp4">
+            </video>
+            <p>
+              Visual comparisons among different GaussianVolume resolution settings and original 3D Gaussian Splatting (3DGS).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{he2024gvgentextto3dgenerationvolumetric,
+  title={GVGEN: Text-to-3D Generation with Volumetric Representation}, 
+  author={Xianglong He and Junyi Chen and Sida Peng and Di Huang and Yangguang Li and Xiaoshui Huang and Chun Yuan and Wanli Ouyang and Tong He},
+  year={2024},
+  eprint={2403.12957},
+  archivePrefix={arXiv},å
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2403.12957}, 
+}</code></pre>
+
+  </div>
+</section>
+
+<nav class="navbar is-white" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" >
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://github.com/graphdeco-inria/gaussian-splatting">
+            3DGS
+          </a>
+          <a class="navbar-item" href="https://github.com/openai/shap-e">
+            Shap-E
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <!-- <div class="column is-8"> -->
+        <div class="content has-text-centered">
+          <p>
+            Website source based on <a href="https://github.com/nerfies/nerfies.github.io">this source code</a>. We also incorporated design elements from <a href="https://diffusion-with-forward-models.github.io/">DFM</a> and <a href="https://research.nvidia.com/labs/dir/magic3d/">Magic3D</a>. 
+          </p>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
