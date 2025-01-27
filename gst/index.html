@@ -1,375 +1,320 @@
-<html>
+<html lang="en-GB">
 <head>
-  <meta charset="utf-8">
-  <meta name="description"
-        content="Where Am I and What Will I See: An Auto-Regressive Model for Spatial Localization and View Prediction">
-  <meta name="keywords" content="diffusion, 3dgs">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GST</title>
+    <title>GST</title>
+    <link rel="icon" href="./assets/figures/logo_new.png">
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>Clarity: A Minimalist Website Template for AI Research</title> -->
+    <meta name="description" content="We've presented Clarity, a minimalist and elegant website template for AI research.">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="robots" content="all">
+    <meta content="en_EN" property="og:locale">
+    <meta content="website" property="og:type">
+    <meta content="https://shikun.io/projects/clarity" property="og:url">
+    <meta content="Clarity" property="og:title">
+    <meta content="Website Template for AI Research" property="og:description">
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="stylesheet" href="./static/css/style.css">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@your_twitter_id">
+    <meta name="twitter:description" content="Clarity: A Minimalist Website Template for AI Research">
+    <meta name="twitter:image:src" content="assets/figures/clarity.png">
 
-  <link rel="icon" href="./sources/images/logo.png">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
-  <style>
-    .video-margin {
-      margin-bottom: 20px; 
-    }
-  </style>
-  <style>
-    .reduce-space {
-      margin-bottom: -100px;  
-    }
-  </style>
-  <style>
-    .bradley {
-        font-family: 'Bradley Hand', cursive;
-    }
-  </style>    
+    <link rel="stylesheet" type="text/css" media="all" href="assets/stylesheets/main_free.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="clarity/clarity.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/foundation.min.css">
+    <link href="assets/fontawesome-free-6.6.0-web/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"/>
+    <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
+    <script src="assets/scripts/navbar.js"></script> <!-- Comment to remove table of content. -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            "HTML-CSS": {
+              scale: 95,
+              fonts: ["Gyre-Pagella"],
+              imageFont: null,
+              undefinedFamily: "'Arial Unicode MS', cmbright"
+            },
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+              }
+          });
+    </script>
+    <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .center {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          /* height: 100vh; */
+        }
+    </style>
 </head>
+
 <body>
+    <!-- Define Menu -->
+    <div id="header"></div>
 
+    <!-- Title Page -->
+    <!-- Dark Theme Example: Change the background colour dark and change the following div "blog-title" into "blog-title white". -->
+    <div class="container blog" id="first-content" style="background-color: #e3f6f9;">
+        <div class="blog-title">
+            <div class="blog-intro">
+                <div>
+                    <!-- <h1 class="title">Clarity: A Minimalist Website Template for AI Research</h1> -->
+                    <h1 class="title">
+                        Where Am I and What Will I See : <br> 
+                        An Auto-Regressive Model for Spatial Localization and View Prediction
+                    </h1>
+                    
+                    <p class="author">
+                        <a href="https://github.com/SOTAMak1r">Junyi Chen</a><sup>1,2</sup>,
+                        <a href="https://dihuang.me/">Di Huang</a><sup>1†</sup>,
+                        <a href="https://ywcmaike.github.io/">Weicai Ye</a><sup>1</sup>,
+                        <a href="https://wlouyang.github.io/">Wanli Ouyang</a><sup>1</sup>,
+                        <a href="https://tonghe90.github.io/">Tong He</a><sup>1</sup>
+                        <br>
+                        
+                        <sup>1</sup>Shanghai AI Lab,
+                        <sup>2</sup>Shanghai Jiao Tong University
+                        <br>
+                        <sup>†</sup>Corresponding Authors
+                        <br>
+                    </p>
+                    
+                    <p style="color: rgb(252, 164, 63)">
+                        Accepted to ICLR 2025
+                    </p>
 
-<section class="hero">
-  <div class="reduce-space">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <!-- <h1 class="title is-1 publication-title">
-            <span class='main-title'>GVGEN:</span> <span class="sub-title"> Text-to-3D Generation with Volumetric Representation</span>
-          </h1> -->
+                    <p>
+                        <!-- Welcome to Clarity — an open-source, minimalist website template designed for presenting AI research. Originally developed as the foundation for my personal website, Clarity offers a modular, clean design that is easy to customise for simple, project-based website creation. With Clarity, you can effectively showcase your work, ensuring your research stands out in a visually appealing and professional manner.  -->
+                        The spatial reasoning ability of humans allows individuals to effortlessly conceive novel views and corresponding viewpoint locations simultaneously within a given scene. 
+                        Consequently, based on this finding, exploring the intrinsic connections between these two modalities is a vital step toward advancing spatial intelligence.
 
-          <!-- <div style="text-align: center;">
-            <img src="./sources/images/gvgen_logo.png" alt="pipeline" width="20%" >
-          </div> -->
-
-
-          <h1 class="title is-1 publication-title jumbotron-heading">
-            <!-- <span class='main-title' id="name">GST</span> -->
-            <span class="bradley"> Where Am I and What Will I See : </span>  <br> 
-            An Auto-Regressive Model for Spatial Localization and View Prediction
-          </h1>
-          
-
-          <!-- <div style="text-align: center;">
-            <img src="./sources/images/eccv.jpg" alt="pipeline" width="40%" >
-          </div> -->
-          
-
-          <br>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://github.com/SOTAMak1r">Junyi Chen</a><sup>1,2</sup>,</span>
-            <span class="author-block">
-              <a href="https://dihuang.me/">Di Huang†</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://ywcmaike.github.io/">Weicai Ye</a><sup>1</sup>,
-            </span>
-            </span>
-            <span class="author-block">
-              <a href="https://wlouyang.github.io/">Wanli Ouyang</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://tonghe90.github.io/">Tong He</a><sup>1</sup>
-            </span>
-          </div>
-          <br>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Shanghai AI Lab,</span>
-            <span class="author-block"><sup>2</sup>Shanghai Jiao Tong University</span>
-            <br>
-            <!-- <span class="author-block"><sup>*</sup>Equal Contributions</span> -->
-            <span class="author-block"><sup>†</sup>Corresponding Authors</span>
-            <br>
-          </div>
-
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="https://www.arxiv.org/abs/2410.18962" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-
-              <span class="link-block">
-                <a href="https://github.com/SOTAMak1r/GST" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                </a>
-              </span>
-              
+                    </p>
+                    
+                </div>
+               
+                <div class="info">
+                    <a href="https://www.arxiv.org/abs/2410.18962" class="button icon" style="background-color: rgba(255, 255, 255, 0.5)">Paper</a>
+                    <a href="https://github.com/SOTAMak1r/GST" class="button icon" style="background-color: rgba(255, 255, 255, 0.5)">Code</a>
+                </div>
             </div>
 
+            <div class="blog-cover">
+                <img class="foreground" src="./assets/figures/logo_new.png">
+                <img class="background" src="./assets/figures/logo_new.png">
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  </div>
-</section>
 
 
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="rows is-centered">
-        <figure>
-          <video id="r10k" autoplay muted loop playsinline width="100%">
-            <source src="sources/videos/teaser_gst.mp4" type="video/mp4">
-          </video>
-          <!-- <img src="./sources/images/teaser.png" alt="pipeline" width="100%" > -->
-          <!-- <figcaption class="tagline">
-            <b>TL;DR</b> <br> 
-            We propose the <b>G</b>enerative <b>S</b>patial <b>T</b>ransformer (GST), 
-            which addresses two fundamental questions "Where am I?" and "What will I see?" in spatial reasoning 
-            by establishing the joint distribution of new perspective views and scenes within a given observational context.
-          </figcaption> -->    
-
-          <br>
-          <br>
-
-          <div class="content has-text-justified">
-            <!-- <b>TL;DR</b> : We propose the <b>G</b>enerative <b>S</b>patial <b>T</b>ransformer (GST), 
-            which addresses two fundamental questions "Where am I?" and "What will I see?" in spatial reasoning. -->
-            <i>
-            <!-- Human spatial reasoning abilities allow for the simultaneous imagination of novel perspectives and corresponding viewpoint locations within a given scene. 
-            This enables easy responses to questions like "Where am I?" and "What will I see?".
-            Our research focuses on exploring the latent connections between images and their corresponding viewpoints, 
-            where these two modalities are intricately intertwined in the realm of 3D vision, akin to the inseparable strands of DNA. -->
-            The spatial reasoning ability of humans allows individuals to effortlessly conceive novel views and corresponding viewpoint locations simultaneously within a given scene. 
-            Consequently, based on this finding, exploring the intrinsic connections between these two modalities is a vital step toward advancing spatial intelligence.
-            </i>
-            <!-- by establishing the joint distribution of novel perspective views and corresponding poses within a given observational context. -->
-          </div>      
-        </figure>
-        
+    <div class="container blog main first" id="blog-main">
+        <h1>
+            TL; DR
+        </h1>
+        <p class='text'>
+            We introduce <b>G</b>enerative <b>S</b>patial <b>T</b>ransformer(GST), 
+            the first model capable of concurrently performing both novel view synthesis and relative camera pose estimation within a unified framework. 
+            Drawing inspiration from human spatial reasoning, we design GST to model the joint distribution of images and camera poses, 
+            enabling it to effectively integrate the training objectives of both tasks. 
+        </p>
+    </div>
 
 
-        <!-- <h2 class="title is-3 has-text-centered">Abstract</h2>
-        <div class="content has-text-justified">
-          <i>Spatial intelligence</i> is the ability of a machine to perceive, reason, and act in three dimensions within space and time.
-          Recent advancements in large-scale auto-regressive models have demonstrated remarkable capabilities across various reasoning tasks. 
-          However, these models often struggle with fundamental aspects of spatial reasoning, particularly in answering questions like "Where am I?" and "What will I see?". 
-          While some attempts have been done, existing approaches typically treat them as separate tasks, failing to capture their interconnected nature. 
-          In this paper, we present GST, a novel auto-regressive framework that jointly addresses spatial localization and view prediction. 
-          Our model simultaneously estimates the camera pose from a single image and predicts the view from a new camera pose, effectively bridging the gap between spatial awareness and visual prediction. 
-          The proposed innovative camera tokenization method enables the model to learn the joint distribution of 2D projections and their corresponding spatial perspectives in an auto-regressive manner. 
-          This unified training paradigm demonstrates that joint optimization of pose estimation and novel view synthesis leads to improved performance in both tasks, for the first time, highlighting the inherent relationship between spatial awareness and visual prediction.
-        </div> -->
-
-        <!-- <div style="text-align: center;">
-          <img src="./sources/images/pipeline.png" alt="pipeline" width="90%" >
+    <div class="container blog main gray">
+        <h1>
+            How it Works?
+        </h1>
+        <br>
+        <div class="center">
+            <iframe width="650" height="350" src="https://www.youtube.com/embed/pydiW0kexPE?si=BTWkMFXbNaynH3mV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-        <p><strong>Fig. 1: Overview of GVGEN.</strong> 
-        Our framework comprises two stages.
-        In the data pre-processing phase, we fit GaussianVolumes and extract coarse geometry Gaussian Distance Field (GDF) as training data.
-        For the generation stage, we first generate GDF via a diffusion model, 
-        and then send it into a 3D U-Net to predict attributes of GaussianVolumes. -->
-
-    </div>
-    <!--/ Abstract. -->
-  </div>
-</section>
-
-
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3">How It Works</h2>
-    </div>
-    <br>
-    <!-- <div class="content has-text-justified">
-      Previous methods have typically constructed unimodal target distributions for tasks such as novel view synthesis and camera pose estimation. 
-      However, GST has established a joint distribution that encompasses both images and their corresponding camera poses. 
-      The advantage of this modeling approach lies in its ability to unify the training targets, 
-      thereby ensuring training stability while simultaneously incorporating the modeling of target distributions for both tasks. 
-      Furthermore, the newly introduced target distribution can further enhance the model's spatial understanding capabilities.
-      For further discussion, please refer to the original paper.
-    </div> -->
-
-    <!-- <figure>
-      <img src="./sources/images/distribution.png" alt="pipeline" width="100%" >
-    </figure> -->
-    <div class="columns is-centered has-text-centered">
-    <iframe width="960" height="540" src="https://www.youtube.com/embed/pydiW0kexPE?si=BTWkMFXbNaynH3mV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-  </div>
-</section>
-
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3">Novel View Synthesis</h2>
     </div>
 
-    <div class="content has-text-justified">
-      For a given observational image,
-      the GST initially sample multiple appropriate camera poses automatically, 
-      which are then employed as conditions to generate corresponding novel view images.
+
+    <div class="container blog main">
+        <h1>
+            Methods
+        </h1>
+
+        <p class="text">
+            Previous methods have traditionally constructed unimodal target distributions for novel view synthesis and camera estimation tasks. 
+            However, GST has introduced a joint distribution for both the image and the corresponding camera poses.
+            This enables us to initiate from a single image while simultaneously sampling novel view images along with their corresponding perspectives.
+        </p>
+
+        <img src="./assets/figures/condition_distribution.png">
+
+        <p class="text">
+            Diverging from prior research, our focus lies in uncovering the inherent consistency between these two tasks rather than alternately training the two objectives during the training process.
+            Our approach starts by tokenizing the image and camera spatial positions, merging two codebooks to ensure the model treats both modalities equally. 
+            We then proceed to train a generative network to model the joint distribution of these components. 
+            Our pipeline is shown in the figure below.
+        </p>
+
+        <img src="./assets/figures/pipeline.png">
+
     </div>
 
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <div class="columns is-centered has-text-centered">
-          <div class="column content">
-            <!-- <video id="matting-video" autoplay muted loop playsinline width="100%">
-              <source src="sources/videos/results.mp4"
-                      type="video/mp4">
-            </video> -->
-            <img src="./sources/images/nvs1.png" alt="pipeline" width="100%" >
-            <img src="./sources/images/nvs2.png" alt="pipeline" width="100%" >
-            <img src="./sources/images/nvs3.png" alt="pipeline" width="100%" >
-            <img src="./sources/images/nvs4.png" alt="pipeline" width="100%" >
-            <img src="./sources/images/nvs5.png" alt="pipeline" width="100%" >
-            <img src="./sources/images/nvs6.png" alt="pipeline" width="100%" >
-            <img src="./sources/images/nvs7.png" alt="pipeline" width="100%" >
-            <img src="./sources/images/nvs8.png" alt="pipeline" width="100%" >
-            <img src="./sources/images/nvs9.png" alt="pipeline" width="100%" >
-            <img src="./sources/images/nvs10.png" alt="pipeline" width="100%" >
-          </div>
+
+
+    <div class="container blog main">
+        <h1>
+            Samples
+        </h1>
+
+        <p class="text">
+            For a given observational image, the GST initially sample multiple appropriate camera poses automatically ($p(c | o)$), 
+            which are then employed as conditions to generate corresponding novel view images ($p(i | o, c)$).
+        </p>
+    </div>
+
+
+    <div class="container blog max gray">
+        <div class="slideshow">
+            <div class="navigation">
+                <!-- Using FontAwesome Pro -->
+                <!-- <a class="button icon" id="prev_btn"><i class="fa-solid fa-left" ></i></a>
+                <a class="button icon" id="next_btn"><i class="fa-solid fa-right"></i></a> -->
+                <!-- Using FontAwesome Free -->
+                <a class="button icon" id="prev_btn"><i class="fa-solid fa-arrow-left"></i></a>
+                <a class="button icon" id="next_btn"><i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="slider">
+                <div class="slider-item">
+                    <!-- <video loop playsinline muted autoplay src="https://mardini-vidgen.github.io/clarity/videos/1.mp4"></video> -->
+                    <img src="./assets/figures/sample_001.png">
+                </div>
+                <div class="slider-item">
+                    <img src="./assets/figures/sample_002.png">
+                </div>
+                <div class="slider-item">
+                    <img src="./assets/figures/sample_003.png">
+                </div>
+                <div class="slider-item">
+                    <img src="./assets/figures/sample_004.png">
+                </div>
+                <div class="slider-item">
+                    <img src="./assets/figures/sample_005.png">
+                </div>
+                <div class="slider-item">
+                    <img src="./assets/figures/sample_006.png">
+                </div>
+                <div class="slider-item">
+                    <img src="./assets/figures/sample_007.png">
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</section>
+    
 
+    <div class="container blog main">
+        <h1>
+            Camera Pose Estimation
+        </h1>
 
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3">Relative Pose Estimation</h2>
-    </div>
-
-    <div class="content has-text-justified">
-      For a pair of images representing the same scene, 
-      the GST can infer relative camera poses effectively and demonstrates strong generalization capabilities, 
-      even when the capture or creation conditions of these two images are markedly disparate.
+        <p class="text">
+            We selected several highly challenging examples to test the spatial localization capabilities of GST.
+            The selected image pairs include real-world images, 
+            images of the same subject taken under different shooting conditions, 
+            and images of the same object depicted under various artistic styles. 
+            GST demonstrated outstanding performance across all these examples.
+        </p>
     </div>
 
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <div class="columns is-centered has-text-centered">
-          <div class="column content">
-            <!-- <video id="matting-video" autoplay muted loop playsinline width="100%">
-              <source src="sources/videos/results.mp4"
-                      type="video/mp4">
-            </video> -->
-            <img src="./sources/images/est.png" alt="pipeline" width="100%" >
-          </div>
+
+    <div class="container blog max gray">
+        <div class="slideshow">
+            <div class="navigation">
+                <!-- Using FontAwesome Pro -->
+                <!-- <a class="button icon" id="prev_btn"><i class="fa-solid fa-left" ></i></a>
+                <a class="button icon" id="next_btn"><i class="fa-solid fa-right"></i></a> -->
+                <!-- Using FontAwesome Free -->
+                <a class="button icon" id="prev_btn"><i class="fa-solid fa-arrow-left"></i></a>
+                <a class="button icon" id="next_btn"><i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="slider">
+                <div class="slider-item">
+                    <!-- <video loop playsinline muted autoplay src="https://mardini-vidgen.github.io/clarity/videos/1.mp4"></video> -->
+                    <img src="./assets/figures/est_001.png">
+                </div>
+                <div class="slider-item">
+                    <img src="./assets/figures/est_002.png">
+                </div>
+                <div class="slider-item">
+                    <img src="./assets/figures/est_003.png">
+                </div>
+                <div class="slider-item">
+                    <img src="./assets/figures/est_004.png">
+                </div>
+                <div class="slider-item">
+                    <img src="./assets/figures/est_005.png">
+                </div>
+                <div class="slider-item">
+                    <img src="./assets/figures/est_006.png">
+                </div>
+                <div class="slider-item">
+                    <img src="./assets/figures/est_007.png">
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</section>
+    
 
 
-
-
-<!-- <section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3">Integration with Existing Methods</h2>
+    <div class="container blog main">
+        <h1>
+            Interesting Findings
+        </h1>
+        <p class="text">
+            We capture a real-world object from various angles and positions, 
+            allowing GST to sample valid camera distributions from $p(c|o)$ for each scenario. 
+            For images captured from a top-down perspective (a), GST predominantly sampled cameras with a top-down viewpoint. 
+            Similarly, for objects viewed from a frontal angle (b), GST preferentially sampled cameras with a frontal perspective. 
+            Notably, in scenarios involving obstacles (c), GST  effectively avoided these obstructions and sampled reasonable camera positions. 
+            These results, achieved without any manual intervention, further demonstrate GST's ability to accurately comprehend the spatial layout from observed images.
+        </p>
     </div>
-
-    <div class="content has-text-justified">
-      With recent text-to-3D optimization-based methods like <a href="https://github.com/gsgen3d/gsgen">GSGEN</a>,
-    </div>
-
-
-  </div>
-</section> -->
-
-
-<!-- <section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@misc{he2024gvgentextto3dgenerationvolumetric,
-  title={GVGEN: Text-to-3D Generation with Volumetric Representation}, 
-  author={Xianglong He and Junyi Chen and Sida Peng and Di Huang and Yangguang Li and Xiaoshui Huang and Chun Yuan and Wanli Ouyang and Tong He},
-  year={2024},
-  eprint={2403.12957},
-  archivePrefix={arXiv},
-  primaryClass={cs.CV},
-  url={https://arxiv.org/abs/2403.12957}, 
-}</code></pre>
-  </div>
-</section> -->
-
-
-
-<nav class="navbar is-white" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" >
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://sotamak1r.github.io/gvgen/">
-            GVGEN
-          </a>
-        </div>
-      </div>
+    <div class="container blog extra-large gray-linear">
+        <img src="./assets/figures/traj.png">
     </div>
 
-  </div>
-</nav>
-
-
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <!-- <div class="column is-8"> -->
-        <div class="content has-text-centered">
-          <p>
-            Website source based on <a href="https://github.com/nerfies/nerfies.github.io">this source code</a>. We also incorporated design elements from <a href="https://diffusion-with-forward-models.github.io/">DFM</a>. 
-          </p>
-        <!-- </div> -->
-      </div>
+    <div class="container blog main">
+        <h1>
+            Citation
+        </h1>
+        <pre><code class="plaintext">@misc{chen2024iiseeautoregressive,
+    title={Where Am I and What Will I See: An Auto-Regressive Model for Spatial Localization and View Prediction}, 
+    author={Junyi Chen and Di Huang and Weicai Ye and Wanli Ouyang and Tong He},
+    year={2024},
+    eprint={2410.18962},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV},
+    url={https://arxiv.org/abs/2410.18962}, 
+}
+</code></pre>
     </div>
-  </div>
-</footer>
 
+
+
+    <!-- Footer Page -->
+    <footer>
+        <div class="container">
+            <p>
+                This website is built on the <a href="https://shikun.io/projects/clarity">Clarity Template</a>, designed by <a href="https://shikun.io/">Shikun Liu</a>.
+            </p>
+        </div>    
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="clarity/clarity.js"></script>    
+    <script src="assets/scripts/main.js"></script>    
+    </html>
 </body>
-</html>
