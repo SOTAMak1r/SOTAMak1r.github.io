@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepVerse</title>
+    <link rel="icon" href="./assets/icons/logo.png">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(
+                135deg,
+                rgba(253,145,57,0.15) 0%,
+                rgba(250,64,85,0.15) 33%,
+                rgba(126,56,185,0.15) 66%,
+                rgba(28,126,235,0.15) 100%
+
+            );
+            animation: gradientAnim 10s ease infinite;
+        }
+
+        @keyframes gradientAnim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .pulse-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            50% { opacity: 0.2; }
+        }
+
+        .hover-3d {
+            transition: transform 0.3s ease;
+        }
+        .hover-3d:hover {
+            transform: translateY(-5px) rotateX(5deg);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    
+    <nav id="main-nav" class="fixed top-0 left-0 right-0 w-full z-50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <span class="text-2xl font-bold text-white">DeepVerse</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="#" class="text-white/80 hover:text-white px-3 py-2">Paper</a>
+                        <a href="https://github.com/SOTAMak1r/DeepVerse" class="text-white/80 hover:text-white px-3 py-2">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="gradient-bg min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+                    <span style="background-image: linear-gradient(to right, 
+                            rgba(253,145,57,0.8) 0%,
+                            rgba(250,64,85,0.8) 33%,
+                            rgba(126,56,185,0.8) 66%,
+                            rgba(28,126,235,0.8) 100%
+                        );
+                        -webkit-background-clip: text;
+                        background-clip: text;
+                        color: transparent;">
+                        DeepVerse
+                    </span>
+                    <br>
+                </h1>
+                <p class="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+                    4D Autoregressive Video Generation as a World Model
+                </p>
+                <div class="text-gray-700 mb-10 max-w-2xl mx-auto space-y-2">
+                    <div class="text-lg font-medium">
+                        <span class="text-black">
+                            <a href="https://sotamak1r.github.io/">Junyi Chen</a><sup>1,2</sup>, 
+                            <a href="https://www.haoyizhu.site/">Haoyi Zhu</a><sup>2,3</sup>, 
+                            <a href="https://xianglonghe.github.io/">Xianglong He</a><sup>4</sup>, 
+                            <a href="https://github.com/yyfz/">Yifan Wang</a><sup>1,2*</sup>, 
+                            <a href="https://zhoutimemachine.github.io/">Jianjun Zhou</a><sup>2,5*</sup>, 
+                            <br>
+                            <a href="https://github.com/AmberHeart/">Wenzheng Chang</a><sup>2,3*</sup>, 
+                            <a href="https://github.com/yangzhou24/">Yang Zhou</a><sup>2,6*</sup>, 
+                            <a href="https://github.com/LiZizun/">Zizun Li</a><sup>2,3*</sup>, 
+                            <a href="https://scholar.google.com/citations?user=6bdPeKcAAAAJ&hl=zh-CN&oi=ao">Zhoujie Fu</a><sup>2,7</sup>, 
+                            <br>
+                            <a href="https://oceanpang.github.io/">Jiangmiao Pang</a><sup>2</sup>, 
+                            <a href="https://tonghe90.github.io/">Tong He</a><sup>2✉️</sup> 
+                        </span> 
+                        <br>
+                        <span class="text-sm">
+                            <sup>1</sup>Shanghai Jiao Tong University, 
+                            <sup>2</sup>Shanghai AI Lab,
+                            <sup>3</sup>University of Science and Technology of China,
+                            <sup>4</sup>Tsinghua University,
+                            <sup>5</sup>Zhejiang University,
+                            <sup>6</sup>Fudan University,
+                            <sup>7</sup>Nanyang Technology University,
+                            <br>
+                            <sup>*</sup>equal contribution,
+                            <sup>✉️</sup>Corresponding Author
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="space-y-6">
+                <figure class="space-y-4">
+                    <img src="./assets/images/teaser.png" 
+                         alt="DeepVerse Architecture Overview" 
+                         class="w-full h-auto rounded-xl shadow-lg object-cover">
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-gray-50 py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-16 text-center">
+                <h2 class="text-3xl font-bold mb-4">General Control</h2>
+                    <p class="text-gray-600 text-left max-w-2xl mx-auto"> 
+                        DeepVerse diverges from previous methodologies by eschewing controller-derived control signals. 
+                        Instead, we employs textual input as a universal control modality. 
+                        This design choice presents two principal advantages: 
+                        On the one hand, it enables maximal utilization of the conditional control priors inherent in the base video generation model. 
+                        On the other hand, textual representation serves as a more generalized control mechanism that demonstrates extensible applicability across diverse controller architectures.                
+                    </p>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/general/video4.mp4" type="video/mp4">
+                    </video>
+                    <p>
+                        The character ran down the road, moving steadily forward.
+                    </p>
+                </div>
+                <div>
+                    <div style="flex: 0 0 240px; position: relative">
+                        <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                                    border-radius: 4px; font-size: 12px; z-index: 2;">
+                            physical collision
+                        </div>
+                        <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                            <source src="assets/videos/general/video5.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p>
+                        The character ran across the road, moving steadily forward.
+                    </p>
+                    
+                </div>
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/general/video6.mp4" type="video/mp4">
+                    </video>
+                    <p>
+                        The character ran down the road, passing by a car.
+                    </p>
+                </div>
+
+
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/general/video1.mp4" type="video/mp4">
+                    </video>
+                    <p>
+                        The character walked down the village path, passing by a dog and villagers.
+                    </p>
+                </div>
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/general/video2.mp4" type="video/mp4">
+                    </video>
+                    <p>
+                        The car is driving forward on an empty road at night.
+                    </p>
+                </div>
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/general/video3.mp4" type="video/mp4">
+                    </video>
+                    <p>
+                        The character walked along the dirt path towards the field.
+                    </p>
+                </div>
+
+
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/general/video7.mp4" type="video/mp4">
+                    </video>
+                    <p>
+                        The character rode a horse along the railway tracks through a grassy landscape.
+                    </p>
+                </div>
+
+
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/general/video9.mp4" type="video/mp4">
+                    </video>
+                    <p>
+                        The character walked along the tram tracks, passing by vintage cars and buildings.
+                    </p>
+                </div>
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/general/video10.mp4" type="video/mp4">
+                    </video>
+                    <p>
+                        The character walked along the tram tracks, moving forward through the street.
+                    </p>
+                </div>
+                <div>
+                    <div style="flex: 0 0 240px; position: relative">
+                        <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                                    border-radius: 4px; font-size: 12px; z-index: 2;">
+                            hair simulation
+                        </div>
+                        <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                            <source src="assets/videos/general/video11.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p>
+                        The character rode a horse through a dense forest, moving steadily forward between tall trees. 
+                    </p>
+                </div>
+                <div>
+                    <div style="flex: 0 0 240px; position: relative">
+                        <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                                    border-radius: 4px; font-size: 12px; z-index: 2;">
+                            hair simulation
+                        </div>
+                        <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                            <source src="assets/videos/general/video12.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p>
+                        The character rode a horse along a narrow path through a forested area, moving steadily forward. 
+                    </p>
+                </div>
+                <div>
+                    <div style="flex: 0 0 240px; position: relative">
+                        <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                                    border-radius: 4px; font-size: 12px; z-index: 2;">
+                            hair simulation
+                        </div>
+                        <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                            <source src="assets/videos/general/video13.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p>
+                        The character rode a horse along a narrow path through a forested area.
+                    </p>
+                </div>
+
+                <div>
+                    <div style="flex: 0 0 240px; position: relative">
+                        <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                                    border-radius: 4px; font-size: 12px; z-index: 2;">
+                            light simulation
+                        </div>
+                        <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                            <source src="assets/videos/general/video8.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p>
+                        The character ran along the dirt path with a flashlight, illuminating the way ahead. 
+                    </p>
+                </div>
+                <div>
+                    <div style="flex: 0 0 240px; position: relative">
+                        <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                                    border-radius: 4px; font-size: 12px; z-index: 2;">
+                            physical collision
+                        </div>
+                        <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                            <source src="assets/videos/general/video14.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p>
+                        The car is driving through a futuristic city street. 
+                    </p>
+                </div>
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/general/video19.mp4" type="video/mp4">
+                    </video>
+                    <p>
+                        The car is driving through a wet city street.
+                    </p>
+                </div>
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/general/video15.mp4" type="video/mp4">
+                    </video>
+                    <p>
+                        The car is driving on a road through a desert landscape.
+                    </p>
+                </div>
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/general/video16.mp4" type="video/mp4">
+                    </video>
+                    <p>
+                        The perspective moved forward along the sandy path, passing by wooden posts and grassy patches towards the beach.
+                    </p>
+                </div>
+                <div>
+                    <div style="flex: 0 0 240px; position: relative">
+                        <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                                    border-radius: 4px; font-size: 12px; z-index: 2;">
+                            physical collision
+                        </div>
+                        <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                            <source src="assets/videos/general/video17.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p>
+                        The car is driving down a sunny street lined with colorful buildings and festive banners. 
+                    </p>
+                </div>
+                <div>
+                    <div style="flex: 0 0 240px; position: relative">
+                        <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                                    border-radius: 4px; font-size: 12px; z-index: 2;">
+                            physical collision
+                        </div>
+                        <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                            <source src="assets/videos/general/video18.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p>
+                        The car is driving down a sunny street lined with colorful buildings and festive banners.
+                    </p>
+                </div>
+                <div>
+                    <div style="flex: 0 0 240px; position: relative">
+                        <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                                    border-radius: 4px; font-size: 12px; z-index: 2;">
+                            NPCs
+                        </div>
+                        <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                            <source src="assets/videos/general/video20.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p>
+                        The character ran up the slope. 
+                    </p>
+                </div>
+                <div>
+                    <div style="flex: 0 0 240px; position: relative">
+                        <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                                    border-radius: 4px; font-size: 12px; z-index: 2;">
+                            NPCs
+                        </div>
+                        <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                            <source src="assets/videos/general/video21.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p>
+                        The character ran up the slope. 
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <div class="bg-white py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Projected onto Action Control</h2>
+                <p class="text-gray-600 text-left max-w-2xl mx-auto">
+                    The control signals from the controller can be mapped into textual representations, 
+                    enabling DeepVerse to regulate content generation through controller manipulation. 
+                    This framework demonstrates <i><b>robust control consistency</b></i> across diverse narrative perspectives, 
+                    including third-person character depictions, multiple avatar integrations, and first-person experiential modes. 
+                    Let us commence this implementation with the Wukong !                
+                </p>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <div data-video-group="1">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/action/wukong1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="1">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/action/wukong2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="1">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/action/wukong3.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="2">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/action/fly1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="2">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/action/fly2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="2">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/action/fly3.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="3">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/action/street1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="3">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/action/street2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="3">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/action/street3.mp4" type="video/mp4">
+                    </video>
+                </div>
+                
+                <div style="flex: 0 0 240px; position: relative" data-video-group="5">
+                    <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                                border-radius: 4px; font-size: 12px; z-index: 2;">
+                        light simulation
+                    </div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/action/man1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div style="flex: 0 0 240px; position: relative" data-video-group="5">
+                    <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                                border-radius: 4px; font-size: 12px; z-index: 2;">
+                        light simulation
+                    </div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/action/man2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div style="flex: 0 0 240px; position: relative" data-video-group="5">
+                    <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                                border-radius: 4px; font-size: 12px; z-index: 2;">
+                        light simulation
+                    </div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/action/man3.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bg-gray-50 py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-16 text-center"> 
+                <h2 class="text-3xl font-bold mb-4">4D Representation</h2>
+                    <p class="text-gray-600 text-left max-w-2xl mx-auto"> 
+                        DeepVerse enhances the model's scene comprehension by constructing a 4D representation of environments, 
+                        while our findings reveal that 3D modality significantly contributes to preserving temporal consistency in future predictions. 
+                        The comparative analysis presented below is derived from identical observational inputs and equivalent action sequences.
+                    </p>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <div data-video-group="1_w">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/4d/video1_wo.mp4" type="video/mp4">
+                    </video>
+                    <p class="text-center">
+                        w/o depth
+                    </p>
+                </div>
+                <div data-video-group="2_w">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/4d/video2_wo.mp4" type="video/mp4">
+                    </video>
+                    <p class="text-center">
+                        w/o depth
+                    </p>
+                </div>
+                <div data-video-group="3_w">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/4d/video3_wo.mp4" type="video/mp4">
+                    </video>
+                    <p class="text-center">
+                        w/o depth
+                    </p>
+                </div>
+                <div data-video-group="1_w">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/4d/video1_w.mp4" type="video/mp4">
+                    </video>
+                    <p class="text-center">
+                        w/ depth
+                    </p>
+                </div>
+                <div data-video-group="2_w">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/4d/video2_w.mp4" type="video/mp4">
+                    </video>
+                    <p class="text-center">
+                        w/ depth
+                    </p>
+                </div>
+                <div data-video-group="3_w">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/4d/video3_w.mp4" type="video/mp4">
+                    </video>
+                    <p class="text-center">
+                        w/ depth
+                    </p>
+                </div>
+                
+
+
+
+                <div data-video-group="4">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/4d/video1_static.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="4">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/4d/video1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="4">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/4d/video1_move.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="6">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/4d/video2_static.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="6">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/4d/video2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="6">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/4d/video2_move.mp4" type="video/mp4">
+                    </video>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="bg-white py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-16 text-center"> 
+                <h2 class="text-3xl font-bold mb-4">Generalization</h2>
+                    <p class="text-gray-600 text-left max-w-2xl mx-auto">
+                        Although DeepVerse is trained on synthetic data, 
+                        it demonstrates generalization capabilities across real-world and AI-generated scenarios.
+                    </p>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/real/singlevideo1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/real/singlevideo2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/real/singlevideo3.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/real/singlevideo4.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/real/singlevideo5.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div>
+                    <video autoplay loop muted playsinline class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/real/singlevideo6.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div data-video-group="7">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/real/video3_static.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="7">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/real/video3.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="7">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/real/video3_move.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div data-video-group="8">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/real/video2_static.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="8">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/real/video2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div data-video-group="8">
+                    <video loop muted playsinline preload="auto" class="w-full h-auto rounded-lg shadow-lg">
+                        <source src="assets/videos/real/video2_move.mp4" type="video/mp4">
+                    </video>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const groups = ['1', '2', '3', '4', '5', '6', '7', '8', '1_w', '2_w', '3_w'];
+            
+            groups.forEach(groupId => {
+                const videos = document.querySelectorAll(`[data-video-group="${groupId}"] video`);
+                let loadedCount = 0;
+        
+                const playGroup = () => {
+                    videos.forEach(video => video.play());
+                };
+
+                videos.forEach(video => {
+                    
+                    const handleCanPlay = () => {
+                        loadedCount++;
+                        if (loadedCount === videos.length) {
+                            playGroup();
+                            video.removeEventListener('canplaythrough', handleCanPlay);
+                        }
+                    };
+        
+                    if (video.readyState >= 4) {
+                        loadedCount++;
+                        if (loadedCount === videos.length) playGroup();
+                    } else {
+                        video.addEventListener('canplaythrough', handleCanPlay);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <footer class="py-8 bg-gray-50 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-gray-600">
+                &copy; Junyi Chen
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.hover-3d').forEach((el) => observer.observe(el));
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.getElementById('main-nav');
+            let lastScroll = 0;
+
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                 
+                if (currentScroll > 50) {
+                    nav.classList.add('bg-white', 'shadow-md', 'backdrop-blur-md');
+                    nav.classList.remove('bg-transparent');
+                    nav.querySelector('span').classList.replace('text-white', 'text-gray-900');
+                    nav.querySelectorAll('a').forEach(link => {
+                        link.classList.replace('text-white/80', 'text-gray-600');
+                    });
+                } else {
+                    nav.classList.remove('bg-white', 'shadow-md', 'backdrop-blur-md');
+                    nav.classList.add('bg-transparent');
+                    nav.querySelector('span').classList.replace('text-gray-900', 'text-white');
+                    nav.querySelectorAll('a').forEach(link => {
+                        link.classList.replace('text-gray-600', 'text-white/80');
+                    });
+                }
+                
+                lastScroll = currentScroll;
+            });
+        });
+    </script>
+</body>
+</html>
