@@ -7,6 +7,23 @@
     <link rel="icon" href="./assets/icons/logo.png">
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
     <style>
+        /* 添加平滑过渡效果 */
+        .group:hover .group-hover\:block {
+            display: block !important;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .gradient-bg {
             background: linear-gradient(
                 135deg,
@@ -53,6 +70,25 @@
                     <div class="ml-10 flex items-baseline space-x-6">
                         <a href="https://www.arxiv.org/abs/2506.01103" class="text-white/80 hover:text-white px-3 py-2">Paper</a>
                         <a href="https://github.com/SOTAMak1r/DeepVerse" class="text-white/80 hover:text-white px-3 py-2">GitHub</a>
+
+                        <div class="relative group">
+                            <button class="text-white/80 hover:text-white px-3 py-2 focus:outline-none">
+                                More Works
+                                <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            
+                            <div class="absolute hidden group-hover:block pt-2 left-1/2 -translate-x-1/2 max-w-[calc(100vw-20px)]">
+                                <div class="bg-white rounded-lg shadow-lg py-2 w-[max-content] min-w-[200px] max-w-full overflow-x-auto">
+                                  <div class="px-2"> 
+                                    <a href="https://aether-world.github.io/" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 whitespace-nowrap">Aether</a>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
