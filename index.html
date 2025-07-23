@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Junyi Chen</title>
+    <link rel="icon" href="./figures/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        
+        /* html {
+            background-color: rgb(238, 238, 238);
+        } */
+        body {
+            margin: 30px auto;
+            padding: 10px 10px 10px;
+            background-color: rgb(255, 255, 255);
+            font-family: Georgia, serif;
+            max-width: 800px;
+            border-radius: 8px;
+            line-height: 1.2; 
+        }
+        /* body { 
+            font-family: Arial, sans-serif; 
+            line-height: 1.6; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        } */
+        header { text-align: center; margin-bottom: 30px; }
+        footer { text-align: center; margin-bottom: 30px; }
+        nav { margin: 20px 0; text-align: center; }
+        a { margin: 2px 2px; text-decoration: none; /*color: #0366d6;*/ color: #6495ED; }
+        section { margin: 40px 0; }
+        .project { border: 1px solid #e1e4e8; padding: 15px; margin: 15px 0; border-radius: 6px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .image-column { width: 100%; }
+        }
+        .profile-container {
+            padding: 40px 0;
+            /* background: #f8f9fa; */
+        }
+        
+        .profile-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            padding: 0 20px;
+        }
+        
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .profile-info {
+            flex: 1;
+        }
+        
+        .profile-info h1 {
+            font-size: 2.8rem;
+            color: #2d3436;
+            margin-bottom: 15px;
+        }
+        
+        .position {
+            font-size: 1.8rem;
+            color: #0984e3;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .summary {
+            font-size: 1.1rem;
+            color: #636e72;
+            line-height: 1.6;
+            margin-bottom: 2px;
+        }
+
+        .sociallink {
+            font-size: 1.1rem;
+            color: #636e72;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .contact {
+            font-size: 1rem;
+            /* color: #74b9ff; */
+            color: #6495ED;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
+        }
+        
+        /* --- Gallery Styles --- */
+        .gallery-container {
+            width: 100%;
+            position: relative;
+            overflow: hidden; /* 隐藏容器外的内容 */
+            border-radius: 8px;
+            box-shadow: 4px 4px 8px #888;
+        }
+
+        .gallery-wrapper {
+            display: flex; /* 让所有图片项水平排列 */
+            transition: transform 0.5s ease-in-out; /* 滑动动画 */
+        }
+
+        .gallery-item {
+            min-width: 100%; /* 每项占据容器的100%宽度 */
+            box-sizing: border-box;
+            position: relative; /* 为文字介绍的绝对定位提供参考 */
+            
+            /* --- 这是实现固定高度和居中的关键 --- */
+            height: 400px; /* 您可以在这里自定义画廊的高度 */
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            background-color: rgba(0, 0, 0, 0.0); /* 当图片较窄时的背景色 */
+        }
+
+        .gallery-item img {
+            /* max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            display: block;
+            border-radius: 8px; */
+            /* width: 100%; */
+            height: 100%;
+            object-fit: cover; /* 这就是实现您效果的关键属性 */
+            display: block;
+            border-radius: 8px;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-family: Arial, sans-serif;
+            font-size: 1rem;
+            
+            /* --- 默认隐藏文字，并准备动画 --- */
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* --- 鼠标悬停时显示文字 --- */
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- 左右箭头按钮样式 --- */
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            box-sizing: border-box;
+            pointer-events: none; /* 让箭头本身不干扰悬停 */
+        }
+
+        .gallery-nav button {
+            pointer-events: all; /* 恢复按钮的点击事件 */
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease;
+            color: #333;
+        }
+
+        .gallery-nav button:hover {
+            background-color: white;
+        }
+        
+        .nav-button {
+            display: inline-block;
+            margin: 0 15px;
+            padding: 10px 20px;
+            background-color: rgba(100, 149, 237, 0.8);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 4px 4px 8px #888;
+        }
+
+        .nav-button:hover {
+            background-color: #457de7;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <header class="profile-container">
+        <div class="profile-content">
+            <img src="figures/me3.jpg" class="profile-img" style="box-shadow: 4px 4px 8px #888;">
+            <div class="profile-info">
+                <h1><span style="font-family: 'Comic Sans MS', Georgia; color: #6495ED;">Jacob</span> Junyi Chen</h1>
+                <!-- <p class="summary">2nd-year PhD @ SJTU CS</p> -->
+                <div class="sociallink">
+                    <a href="https://github.com/SOTAMak1r"><i class="fab fa-github"></i></a> 
+                    <a href="https://x.com/SOTAMak1r"><i class="fab fa-x-twitter"></i></a> 
+                    <a href="https://scholar.google.com/citations?user=BXL9nMgAAAAJ&hl=zh-CN"><i class="fab fa-google-scholar"></i></a>
+                    <a href="https://SOTAMak1r.github.io"><i class="fa-solid fa-user"></i></a>
+                    <!-- <a href="chenjunyi.work@gmail.com"><i class="fa-solid fa-envelope"></i></a> -->
+                </div>
+                <p class="contact">📧 chenjunyi.work@gmail.com</p>
+            </div>
+        </div>
+    </header>
+
+    
+
+
+    <!-- <nav>
+        <a href="#Research" style="margin: 0 15px;">Research Interest</a>
+        <a href="#Publications" style="margin: 0 15px;">Publications</a>
+        <a href="#Education" style="margin: 0 15px;">Education & Experience</a>
+        <a href="#Awards" style="margin: 0 15px;">Awards & Service</a>
+    </nav> -->
+    <nav>
+        <a href="#Research" class="nav-button">Research Interest</a>
+        <a href="#Publications" class="nav-button">Publications</a>
+        <a href="#Education" class="nav-button">Education & Experience</a>
+        <a href="#Awards" class="nav-button">Awards & Service</a>
+    </nav>
+
+    <hr>
+    <section id="Research">
+        <!-- <h2>👨💻 Research Interest</h2> -->
+        <h2>😍 Research Interest</h2>
+        <!-- <div style="flex: 0 0 240px; position: relative"> -->
+            <img src="figures/research.png"  style="width: 100%; box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+        <!-- </div> -->
+        <p style="line-height: 1.2;">
+            My research centers on multi-modal learning, 
+            with a particular focus on developing foundational models. 
+            I specialize in creating systems that can concurrently process, understand and generate diverse data modalities 
+            — including text, images, videos, and 3D representations — 
+            to build a universal comprehension of our physical world. 
+            <!-- The ultimate goal of my work is to enable genuine reasoning and meaningful interaction. -->
+        </p>
+    </section>
+
+
+    <hr>
+    <section id="Publications">
+        <h2>📢 Publications</h2>
+        <div style="margin-bottom: 30px">
+            * denotes equal contribution,  † denotes corresponding author
+        </div>
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
+            <div style="flex: 0 0 240px; position: relative">
+                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                </div> -->
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_pi3.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">&pi;³: Scalable Permutation-Equivariant Visual Geometry Learning</b>
+                <br>
+                Yifan Wang*, Jianjun Zhou*, Haoyi Zhu, Wenzheng Chang, Yang Zhou, Zizun Li, <b>Junyi Chen</b>, Jiangmiao Pang, Chunhua Shen, Tong He†
+                <br>
+                [<a href="https://yyfz.github.io/pi3/">project page</a>]
+                [<a href="https://arxiv.org/abs/2507.13347">paper</a>]
+                [<a href="https://github.com/yyfz/Pi3">code</a>]								
+                <br>
+            </div>
+        </div>
+
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
+            <div style="flex: 0 0 240px; position: relative">
+                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                </div> -->
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_deepverse.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">DeepVerse: 4D Autoregressive Video Generation as a World Model</b>
+                <br>
+                <b>Junyi Chen</b>, Haoyi Zhu, Xianglong He, Yifan Wang*, Jianjun Zhou*, Wenzheng Chang*, Yang Zhou*, Zizun Li*, Zhoujie Fu, Jiangmiao Pang, Tong He†
+                <br>
+                [<a href="https://sotamak1r.github.io/deepverse/">project page</a>]
+                [<a href="https://www.arxiv.org/abs/2506.01103">paper</a>]
+                [<a href="https://github.com/SOTAMak1r/DeepVerse">code</a>]								
+                <br>
+            </div>
+        </div>
+        
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
+            <div style="flex: 0 0 240px; position: relative">
+                <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                    ICCV 2025
+                </div>
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_aether.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">Aether: Geometric-Aware Unified World Modeling</b>
+                <br>
+                <b>Aether Team</b> (Haoyi Zhu*, Yifan Wang*, Jianjun Zhou*, Wenzheng Chang*, Yang Zhou*, Zizun Li*, <b>Junyi Chen*</b>, Chunhua Shen, Jiangmiao Pang, Tong He†)
+                <br>
+                [<a href="https://aether-world.github.io/">project page</a>]
+                [<a href="https://arxiv.org/abs/2503.18945">paper</a>]
+                [<a href="https://github.com/OpenRobotLab/Aether">code</a>]								
+                <br>
+            </div>
+        </div>
+
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
+            <div style="flex: 0 0 240px; position: relative">
+                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                </div> -->
+                <!-- <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative">
+                    <source src="figures/teaser_cosurfgs.mp4" type="video/mp4">
+                </video> -->
+                <img src="figures/teaser_meshcraft.png" width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">MeshCraft: Exploring Efficient and Controllable Mesh Generation with Flow-based DiTs</b>
+                <br>
+                Xianglong He, <b>Junyi Chen</b>, Di Huang, Zexiang Liu, Xiaoshui Huang, Wanli Ouyang, Chun Yuan†, Yangguang Li†
+                <br>
+                <!-- [<a href="https://gyy456.github.io/CoSurfGS/">project page</a>] -->
+                [<a href="https://arxiv.org/abs/2503.23022">paper</a>]
+                [<a href="https://github.com/XianglongHe/MeshCraft">code</a>]								
+                <br>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
+            <div style="flex: 0 0 240px; position: relative">
+                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                </div> -->
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_cosurfgs.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">CoSurfGS: Collaborative 3D Surface Gaussian Splatting with Distributed Learning for Large Scene Reconstruction</b>
+                <br>
+                Yuanyuan Gao, Yalun Dai, Hao Li, Weicai Ye†, <b>Junyi Chen</b>, Danpeng Chen, Dingwen Zhang†, Tong He, Guofeng Zhang, Junwei Han
+                <br>
+                [<a href="https://gyy456.github.io/CoSurfGS/">project page</a>]
+                [<a href="https://arxiv.org/abs/2412.17612">paper</a>]
+                [<a href="https://github.com/zju3dv/CoSurfGS">code</a>]								
+                <br>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
+            <div style="flex: 0 0 240px; position: relative">
+                <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                    ICLR 2025
+                </div>
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_gst.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">Where Am I and What Will I See: An Auto-Regressive Model for Spatial Localization and View Prediction</b>
+                <br>
+                <b>Junyi Chen</b>, Di Huang†, Weicai Ye, Wanli Ouyang, Tong He†
+                <br>
+                [<a href="https://sotamak1r.github.io/gst/">project page</a>]
+                [<a href="https://arxiv.org/abs/2410.18962">paper</a>]
+                [<a href="https://github.com/SOTAMak1r/GST">code</a>]								
+                <br>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
+            <div style="flex: 0 0 240px; position: relative">
+                <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                    AAAI 2025
+                </div>
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_gigags.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">GigaGS: Scaling up Planar-Based 3D Gaussians for Large Scene Surface Reconstruction</b>
+                <br>
+                <b>Junyi Chen</b>, Weicai Ye†, Yifan Wang, Danpeng Chen, Di Huang, Wanli Ouyang, Guofeng Zhang, Yu Qiao, Tong He†
+                <br>
+                [<a href="https://open3dvlab.github.io/GigaGS/">project page</a>]
+                [<a href="https://arxiv.org/abs/2409.06685">paper</a>]
+                [<a href="https://github.com/Open3DVLab/GigaGS">code</a>]								
+                <br>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
+            <div style="flex: 0 0 240px; position: relative">
+                <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                    ECCV 2024
+                </div>
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_gvgen.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">GVGEN: Text-to-3D Generation with Volumetric Representation</b>
+                <br>
+                Xianglong He*, <b>Junyi Chen*</b>, Sida Peng, Di Huang, Yangguang Li, Xiaoshui Huang, Chun Yuan†, Wanli Ouyang, Tong He†
+                <br>
+                    [<a href="https://sotamak1r.github.io/gvgen/">project page</a>]
+                    [<a href="https://arxiv.org/abs/2403.12957">paper</a>]
+                    [<a href="https://github.com/SOTAMak1r/GVGEN">code</a>]								
+                <br>
+            </div>
+        </div>
+
+    </section>
+
+    <hr>
+
+    <section id="Education">
+        <h2>📖 Education & Experience</h2>
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
+            <div style="flex: 0 0 240px">
+                <img src="figures/pjlab_blue.png" width="240">
+            </div>
+            <div style="flex: 1">
+                <div style="display: flex; justify-content: space-between;">
+                    <b>Shanghai Artificial Intelligence Laboratory</b>
+                    <span>2023 to present</span> 
+                </div>
+                <p>Research Intern</p>
+                <p>3D Generation | 3D Reconstruction | World Models | Generative Models</p>
+                <p>Supervisor: <a href="https://tonghe90.github.io/" style="margin: 0 2px">Tong He</a> & <a href="https://wlouyang.github.io/" style="margin: 0 2px">Wanli Ouyang</a></p>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
+            <div style="flex: 0 0 240px">
+                <img src="figures/sjtu_logo.png" width="240">
+            </div>
+            <div style="flex: 1">
+                <div style="display: flex; justify-content: space-between;">
+                    <b>Shanghai Jiao Tong University</b>
+                    <span>2023.9 to 2028.6</span> 
+                </div>
+                <p>PhD in Computer Science and Technology</p>
+                <p>Supervisor: <a href="https://www.ee.cuhk.edu.hk/~xgwang/" style="margin: 0 2px">Xiaogang Wang</a>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
+            <div style="flex: 0 0 240px">
+                <img src="figures/hust_logo.png" width="240">
+            </div>
+            <div style="flex: 1">
+                <!-- <b>BS in Electronic Engineering</b>  -->
+                <div style="display: flex; justify-content: space-between;">
+                    <b>Huazhong University of Science and Technology</b>
+                    <span>2019.9 to 2023.6</span> 
+                </div>
+                <p>BS in Electronic Engineering</p>
+                <p>GPA: 3.98 / 4</p>
+                <p>Rank: 4% (8 / 180)</p>
+            </div>
+        </div>
+
+    </section>
+
+
+    <hr>
+    <section id="Awards">
+        <h2>🏆 Awards</h2>
+        <ul style="list-style-type: none; padding-left: 0;">
+            <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; line-height: 1.6;">
+                <b>Outstanding Graduate Thesis Award</b>
+                <span style="white-space: nowrap; padding-left: 20px;">2023</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; line-height: 1.6;">
+                <b>Outstanding Graduate in Huazhong University of Science and Technology</b>
+                <span style="white-space: nowrap; padding-left: 20px;">2023</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; line-height: 1.6;">
+                <b>First Prize in Datang Cup National College Students Mobile Communication 5G Technology Competition</b>
+                <span style="white-space: nowrap; padding-left: 20px;">2022</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; line-height: 1.6;">
+                <b>Meritorious Winner in Mathematical Contest In Modeling(MCM)</b>
+                <span style="white-space: nowrap; padding-left: 20px;">2022</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; line-height: 1.6;">
+                <b>Second Prize in Chinese Mathematics Competitions</b>
+                <span style="white-space: nowrap; padding-left: 20px;">2020</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; line-height: 1.6;">
+                <b>Merit Student of Huazhong University of Science and Technology</b>
+                <span style="white-space: nowrap; padding-left: 20px;">2020</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; line-height: 1.6;">
+                <b>Second Prize in Chinese Physics Olympiad(CPhO) in Chongqing</b>
+                <span style="white-space: nowrap; padding-left: 20px;">2018</span>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; line-height: 1.6;">
+                <b>First Prize in National Olympiad in Informatics in Provinces(NOIP)</b>
+                <span style="white-space: nowrap; padding-left: 20px;">2017</span>
+            </li>
+        </ul>
+
+        <h2>📌 Service</h2>
+        <ul style="list-style-type: none; padding-left: 0;">
+            <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; line-height: 1.6;">
+                <b>Reviewer: NeurIPS, TPAMI, AAAI</b> 
+            </li>
+            
+        </ul>
+    </section>
+
+    <!-- Copyright Section -->
+    <footer class="py-8 bg-gray-50 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-gray-600">
+                &copy; Junyi Chen <!-- All rights reserved. -->
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // 如果需要可以添加JavaScript
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // --- Gallery Slider Logic ---
+        const galleryWrapper = document.querySelector('.gallery-wrapper');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentIndex = 0;
+        const totalItems = galleryItems.length;
+
+        function updateGallery() {
+            const offset = -currentIndex * 100;
+            galleryWrapper.style.transform = `translateX(${offset}%)`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateGallery();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+            updateGallery();
+        });
+
+        // 初始化
+        updateGallery();
+    
+
+    </script>
+
+    
+</body>
+</html>
