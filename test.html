@@ -31,9 +31,7 @@
         footer { text-align: center; margin-bottom: 30px; }
         nav { margin: 20px 0; text-align: center; }
         a { margin: 2px 2px; text-decoration: none; /*color: #0366d6;*/ color: #6495ED; }
-        section { margin: 80px 0px; }
-        h2 {text-align: center;}
-        /* h3 {text-align: center;} */
+        section { margin: 40px 0; }
         .project { border: 1px solid #e1e4e8; padding: 15px; margin: 15px 0; border-radius: 6px; }
         @media (max-width: 768px) {
             .container { flex-direction: column; }
@@ -211,8 +209,7 @@
             display: inline-block;
             margin: 0 15px;
             padding: 10px 20px;
-            /* background-color: rgba(100, 149, 237, 0.8); */
-            background-color: rgba(143, 178, 244, 0.751);
+            background-color: rgba(100, 149, 237, 0.8);
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -225,13 +222,42 @@
         .nav-button:hover {
             background-color: #457de7;
         }
-        
-        #last-updated { font-variant-numeric: tabular-nums; opacity: .85; }
+    </style>
 
+    <!-- CHANGED: 仅新增的导航置顶样式（可直接追加到现有样式之后） -->
+    <style>
+      /* 仅影响 <nav> 自身，不改动页面其余元素 */
+      nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 9999;
+        background: rgba(255,255,255,0.92); /* 轻微透明，若不需要可改为 #fff */
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+      /* 避免内容被固定导航遮挡：用一个自动高度的占位 */
+      .nav-spacer { height: var(--nav-h, 60px); }
+      /* 如你的 body 有 margin-top，请保持不变；无需额外改动 */
     </style>
 </head>
 <body>
     
+    <!-- CHANGED: 保持你的 <nav> 内容和结构不变，只是把它放在 <body> 顶部，并在后面加一个占位元素 -->
+    <nav>
+      <!-- 这里保持你原来的导航内部结构、链接与样式类名，完全不改 -->
+      <!-- 例如：-->
+      <div class="container">
+        <a href="#Research">Research</a>
+        <a href="#Publications">Publications</a>
+        <a href="#Education">Education & Experience</a>
+        <a href="#Awards">Awards & Service</a>
+      </div>
+      
+    </nav>
+    <div class="nav-spacer"></div>
+    <!-- ↑↑↑ 仅新增这一行占位，用于给内容让出导航的高度空间 -->
+
 
     <header class="profile-container">
         <div class="profile-content">
@@ -260,14 +286,14 @@
         <a href="#Education" style="margin: 0 15px;">Education & Experience</a>
         <a href="#Awards" style="margin: 0 15px;">Awards & Service</a>
     </nav> -->
-    <nav>
+    <!-- <nav>
         <a href="#Research" class="nav-button">Research Interest</a>
         <a href="#Publications" class="nav-button">Publications</a>
         <a href="#Education" class="nav-button">Education & Experience</a>
-        <a href="#Awards" class="nav-button">Awards</a>
-    </nav>
+        <a href="#Awards" class="nav-button">Awards & Service</a>
+    </nav> -->
 
-    <!-- <hr> -->
+    <hr>
     <section id="Research">
         <!-- <h2>👨💻 Research Interest</h2> -->
         <h2>😍 Research Interest</h2>
@@ -285,17 +311,35 @@
     </section>
 
 
-    <!-- <hr> -->
+    <hr>
     <section id="Publications">
         <h2>📢 Publications</h2>
         <div style="margin-bottom: 30px">
             * denotes equal contribution,  † denotes corresponding author
         </div>
 
-        <h3 style="margin-bottom: 30px">
-            👉️ Generative Models - WorldModels, VideoGen, 3DGen
-        </h3>
-        
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
+            <div style="flex: 0 0 240px; position: relative">
+                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                </div> -->
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_pi3.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">&pi;³: Scalable Permutation-Equivariant Visual Geometry Learning</b>
+                <br>
+                Yifan Wang*, Jianjun Zhou*, Haoyi Zhu, Wenzheng Chang, Yang Zhou, Zizun Li, <b>Junyi Chen</b>, Jiangmiao Pang, Chunhua Shen, Tong He†
+                <br>
+                [<a href="https://yyfz.github.io/pi3/">project page</a>]
+                [<a href="https://arxiv.org/abs/2507.13347">paper</a>]
+                [<a href="https://github.com/yyfz/Pi3">code</a>]								
+                <br>
+            </div>
+        </div>
+
+
         <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
             <div style="flex: 0 0 240px; position: relative">
                 <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
@@ -315,7 +359,8 @@
                 [<a href="https://github.com/SOTAMak1r/DeepVerse">code</a>]								
                 <br>
             </div>
-        </div>        
+        </div>
+        
 
         <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
             <div style="flex: 0 0 240px; position: relative">
@@ -339,6 +384,7 @@
             </div>
         </div>
 
+
         <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
             <div style="flex: 0 0 240px; position: relative">
                 <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
@@ -357,6 +403,27 @@
                 <!-- [<a href="https://gyy456.github.io/CoSurfGS/">project page</a>] -->
                 [<a href="https://arxiv.org/abs/2503.23022">paper</a>]
                 [<a href="https://github.com/XianglongHe/MeshCraft">code</a>]								
+                <br>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
+            <div style="flex: 0 0 240px; position: relative">
+                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                </div> -->
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_cosurfgs.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">CoSurfGS: Collaborative 3D Surface Gaussian Splatting with Distributed Learning for Large Scene Reconstruction</b>
+                <br>
+                Yuanyuan Gao, Yalun Dai, Hao Li, Weicai Ye†, <b>Junyi Chen</b>, Danpeng Chen, Dingwen Zhang†, Tong He, Guofeng Zhang, Junwei Han
+                <br>
+                [<a href="https://gyy456.github.io/CoSurfGS/">project page</a>]
+                [<a href="https://arxiv.org/abs/2412.17612">paper</a>]
+                [<a href="https://github.com/zju3dv/CoSurfGS">code</a>]								
                 <br>
             </div>
         </div>
@@ -387,116 +454,6 @@
             <div style="flex: 0 0 240px; position: relative">
                 <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
                             border-radius: 4px; font-size: 12px; z-index: 2;">
-                    ECCV 2024
-                </div>
-                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-                    <source src="figures/teaser_gvgen.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="flex: 1">
-                <b style="color: #0366d6;">GVGEN: Text-to-3D Generation with Volumetric Representation</b>
-                <br>
-                Xianglong He*, <b>Junyi Chen*</b>, Sida Peng, Di Huang, Yangguang Li, Xiaoshui Huang, Chun Yuan†, Wanli Ouyang, Tong He†
-                <br>
-                    [<a href="https://sotamak1r.github.io/gvgen/">project page</a>]
-                    [<a href="https://arxiv.org/abs/2403.12957">paper</a>]
-                    [<a href="https://github.com/SOTAMak1r/GVGEN">code</a>]								
-                <br>
-            </div>
-        </div>
-
-
-        <h3 style="margin-bottom: 30px">
-            👉️ 3D Reconstruction
-        </h3>
-        
-        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
-            <div style="flex: 0 0 240px; position: relative">
-                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
-                            border-radius: 4px; font-size: 12px; z-index: 2;">
-                </div> -->
-                <img src="figures/teaser_omniworld.png" width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-            </div>
-            <div style="flex: 1">
-                <b style="color: #0366d6;">OmniWorld: A Multi-Domain and Multi-Modal Dataset for 4D World Modeling</b>
-                <br>
-                Yang Zhou, Yifan Wang, Jianjun Zhou, Wenzheng Chang, Haoyu Guo, Zizun Li, Kaijing Ma, Xinyue Li, Yating Wang, Haoyi Zhu, Mingyu Liu, Dingning Liu, Jiange Yang, Zhoujie Fu, <b>Junyi Chen</b>, Chunhua Shen, Jiangmiao Pang, Kaipeng Zhang, Tong He†
-                <br>
-                [<a href="https://yangzhou24.github.io/OmniWorld/">project page</a>]
-                [<a href="https://arxiv.org/abs/2509.12201">paper</a>]
-                [<a href="https://github.com/yangzhou24/OmniWorld">code</a>]								
-                <br>
-            </div>
-        </div>
-
-        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
-            <div style="flex: 0 0 240px; position: relative">
-                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
-                            border-radius: 4px; font-size: 12px; z-index: 2;">
-                </div> -->
-                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-                    <source src="figures/teaser_wint3r.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="flex: 1">
-                <b style="color: #0366d6;">WinT3R: Window-Based Streaming Reconstruction with Camera Token Pool</b>
-                <br>
-                Zizun Li, Jianjun Zhou, Yifan Wang, Haoyu Guo, Wenzheng Chang, Yang Zhou, Haoyi Zhu, <b>Junyi Chen</b>, Chunhua Shen, Tong He†
-                <br>
-                [<a href="https://lizizun.github.io/WinT3R.github.io/">project page</a>]
-                [<a href="https://arxiv.org/abs/2509.05296">paper</a>]
-                [<a href="https://github.com/LiZizun/WinT3R">code</a>]								
-                <br>
-            </div>
-        </div>
-
-        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
-            <div style="flex: 0 0 240px; position: relative">
-                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
-                            border-radius: 4px; font-size: 12px; z-index: 2;">
-                </div> -->
-                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-                    <source src="figures/teaser_pi3.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="flex: 1">
-                <b style="color: #0366d6;">&pi;³: Scalable Permutation-Equivariant Visual Geometry Learning</b>
-                <br>
-                Yifan Wang*, Jianjun Zhou*, Haoyi Zhu, Wenzheng Chang, Yang Zhou, Zizun Li, <b>Junyi Chen</b>, Jiangmiao Pang, Chunhua Shen, Tong He†
-                <br>
-                [<a href="https://yyfz.github.io/pi3/">project page</a>]
-                [<a href="https://arxiv.org/abs/2507.13347">paper</a>]
-                [<a href="https://github.com/yyfz/Pi3">code</a>]								
-                <br>
-            </div>
-        </div>
-
-        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
-            <div style="flex: 0 0 240px; position: relative">
-                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
-                            border-radius: 4px; font-size: 12px; z-index: 2;">
-                </div> -->
-                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-                    <source src="figures/teaser_cosurfgs.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="flex: 1">
-                <b style="color: #0366d6;">CoSurfGS: Collaborative 3D Surface Gaussian Splatting with Distributed Learning for Large Scene Reconstruction</b>
-                <br>
-                Yuanyuan Gao, Yalun Dai, Hao Li, Weicai Ye†, <b>Junyi Chen</b>, Danpeng Chen, Dingwen Zhang†, Tong He, Guofeng Zhang, Junwei Han
-                <br>
-                [<a href="https://gyy456.github.io/CoSurfGS/">project page</a>]
-                [<a href="https://arxiv.org/abs/2412.17612">paper</a>]
-                [<a href="https://github.com/zju3dv/CoSurfGS">code</a>]								
-                <br>
-            </div>
-        </div>
-        
-
-        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
-            <div style="flex: 0 0 240px; position: relative">
-                <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
-                            border-radius: 4px; font-size: 12px; z-index: 2;">
                     AAAI 2025
                 </div>
                 <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
@@ -515,11 +472,31 @@
             </div>
         </div>
 
-        
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
+            <div style="flex: 0 0 240px; position: relative">
+                <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                    ECCV 2024
+                </div>
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_gvgen.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">GVGEN: Text-to-3D Generation with Volumetric Representation</b>
+                <br>
+                Xianglong He*, <b>Junyi Chen*</b>, Sida Peng, Di Huang, Yangguang Li, Xiaoshui Huang, Chun Yuan†, Wanli Ouyang, Tong He†
+                <br>
+                    [<a href="https://sotamak1r.github.io/gvgen/">project page</a>]
+                    [<a href="https://arxiv.org/abs/2403.12957">paper</a>]
+                    [<a href="https://github.com/SOTAMak1r/GVGEN">code</a>]								
+                <br>
+            </div>
+        </div>
 
     </section>
 
-    <!-- <hr> -->
+    <hr>
 
     <section id="Education">
         <h2>📖 Education & Experience</h2>
@@ -571,9 +548,7 @@
     </section>
 
 
-    <!-- <hr> -->
-
-
+    <hr>
     <section id="Awards">
         <h2>🏆 Awards</h2>
         <ul style="list-style-type: none; padding-left: 0;">
@@ -610,43 +585,13 @@
                 <span style="white-space: nowrap; padding-left: 20px;">2017</span>
             </li>
         </ul>
-    </section>
-    
-    <section id="Misc">
-        <h2>📌 Misc</h2>
+
+        <h2>📌 Service</h2>
         <ul style="list-style-type: none; padding-left: 0;">
             <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; line-height: 1.6;">
-                <b>Reviewer: TPAMI, NeurIPS, AAAI, ICLR</b> 
+                <b>Reviewer: NeurIPS, TPAMI, AAAI</b> 
             </li>
-
-            <ul style="list-style-type: none; padding-left: 0;">
-                <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; line-height: 1.6;">
-                    <b>⚽️ Soccer Career: (Hala Madrid)</b>
-                    <!-- <span style="white-space: nowrap; padding-left: 20px;">2023</span> -->
-                </li>
-                <ul style="list-style-type: none; padding-left: 20px;">
-                    <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; line-height: 1.4;">
-                        <span>• Chongqing Jiangbei Xincun Tongchuang International Primary School Football Team</span>
-                        <span style="white-space: nowrap; padding-left: 20px;">2008-2013</span>
-                    </li>
-                    <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; line-height: 1.4;">
-                        <span>• Chongqing Jiangbei District U15 Football Team (4th place in the Municipal Games)</span>
-                        <span style="white-space: nowrap; padding-left: 20px;">2012</span>
-                    </li>
-                    <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; line-height: 1.4;">
-                        <span>• Chongqing Bashu Middle School Football Team</span>
-                        <span style="white-space: nowrap; padding-left: 20px;">2017-2018</span>
-                    </li>
-                    <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; line-height: 1.4;">
-                        <span>• Huazhong University of Science and Technology EIC School Football Team</span>
-                        <span style="white-space: nowrap; padding-left: 20px;">2019-2023</span>
-                    </li>
-                    <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; line-height: 1.4;">
-                        <span>• Shanghai Jiao Tong University SEIEE School Football B Team</span>
-                        <span style="white-space: nowrap; padding-left: 20px;">2023-2024</span>
-                    </li>
-                </ul>
-            </ul>
+            
         </ul>
     </section>
 
@@ -656,8 +601,6 @@
             <div class="text-center text-gray-600">
                 &copy; Junyi Chen <!-- All rights reserved. -->
             </div>
-            <br>
-            <div>Last updated: <span id="last-updated">—</span></div>
         </div>
     </footer>
 
@@ -703,37 +646,24 @@
 
     </script>
 
-    <!-- <script>
-        (function () {
-            // 取到浏览器认为的最后修改时间，并格式化为新加坡时区
-            var raw = document.lastModified;
-            var dt = new Date(raw);
-
-            // 如果解析失败就不显示
-            if (isNaN(dt.getTime())) return;
-
-            var fmt = new Intl.DateTimeFormat('en-SG', {
-                dateStyle: 'medium',
-                timeStyle: 'short',
-                timeZone: 'Asia/Singapore'
-            });
-
-            var el = document.getElementById('last-updated');
-            if (el) el.textContent = fmt.format(dt);
-        })();
-    </script> -->
+    <!-- CHANGED: 仅新增一小段脚本，用来把 --nav-h 设置为真实导航高度，适配不同屏高/自适应换行 -->
     <script>
-        (function () {
-            var dt = new Date(document.lastModified);
-            if (isNaN(dt)) return;
-
-            // 固定格式：YYYY-MM-DD（Asia/Singapore）
-            var y = dt.getFullYear();
-            var m = String(dt.getMonth() + 1).padStart(2, '0');
-            var d = String(dt.getDate()).padStart(2, '0');
-            document.getElementById('last-updated').textContent = y + '-' + m + '-' + d;
-        })();
+      (function(){
+        const nav = document.querySelector('nav');
+        const spacer = document.querySelector('.nav-spacer');
+        function setH(){
+          if(!nav || !spacer) return;
+          const h = nav.getBoundingClientRect().height;
+          document.documentElement.style.setProperty('--nav-h', h + 'px');
+        }
+        setH();
+        // 导航在响应式下可能换行，监听窗口变化
+        window.addEventListener('resize', setH);
+        // 若你的站点有图片/字体异步加载，加载后高度可能变化
+        window.addEventListener('load', setH);
+      })();
     </script>
 
+    
 </body>
 </html>
