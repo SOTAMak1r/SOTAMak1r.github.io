@@ -11,68 +11,15 @@
         /* html {
             background-color: rgb(238, 238, 238);
         } */
-        /* html {
-            background: url('./figures/bg.jpg') no-repeat center center fixed; 
-            background-size: cover; 
-        } */
-         /* 1. 这是一个独立的背景层，不会影响你网页原本的宽窄 */
-        body::before {
-            content: "";
-            
-            /* 核心：强制固定在浏览器窗口，不随页面宽窄变化 */
-            position: fixed; 
-            top: 0;
-            left: 0;
-            
-            /* 强制铺满整个屏幕窗口 */
-            width: 100vw; 
-            height: 100vh; 
-            
-            /* 放在最底层 */
-            z-index: -999; 
-            
-            /* 你的背景设置 */
-            background: url('./figures/bg.jpg') no-repeat center center;
-            background-size: cover;
-                        
-            /* 避免这个背景层挡住鼠标点击 */
-            pointer-events: none; 
-        }
-
-        /* 2. 只有这个是需要加在 html 上的，用于决定背景变透明后透出的底色 */
-        html {
-            background-color: #000; /* 黑色底色，或改成 #fff 白色 */
-        }
-
-
-        
         body {
-            /* 内容区域必须加背景色，否则字会看不清 */
-            background-color: rgba(255, 255, 255, 0.6); /* 90% 不透明的白色 */
-            
-            /* 保持原样 */
             margin: 30px auto;
-            padding: 30px;
+            padding: 10px 10px 10px;
+            background-color: rgb(255, 255, 255);
             font-family: Georgia, serif;
-            max-width: 900px;
+            max-width: 800px;
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            line-height: 1.2; 
         }
-
-        #bg-slideshow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            
-            /* 1. 确保层级在最下 (负数) */
-            z-index: -99; 
-            
-            /* 2. 【核心代码】加上这一行，让鼠标穿透背景 */
-            pointer-events: none; 
-        }
-
         /* body { 
             font-family: Arial, sans-serif; 
             line-height: 1.6; 
@@ -85,7 +32,7 @@
         nav { margin: 20px 0; text-align: center; }
         a { margin: 2px 2px; text-decoration: none; /*color: #0366d6;*/ color: #6495ED; }
         section { margin: 80px 0px; }
-        h2 {text-align: center; font-size: 2.2rem;}
+        h2 {text-align: center;}
         /* h3 {text-align: center;} */
         .project { border: 1px solid #e1e4e8; padding: 15px; margin: 15px 0; border-radius: 6px; }
         @media (max-width: 768px) {
@@ -278,12 +225,13 @@
         .nav-button:hover {
             background-color: #457de7;
         }
-
+        
         #last-updated { font-variant-numeric: tabular-nums; opacity: .85; }
 
     </style>
 </head>
 <body>
+    
 
     <header class="profile-container">
         <div class="profile-content">
@@ -295,13 +243,16 @@
                     <a href="https://github.com/SOTAMak1r"><i class="fab fa-github"></i></a> 
                     <a href="https://x.com/SOTAMak1r"><i class="fab fa-x-twitter"></i></a> 
                     <a href="https://scholar.google.com/citations?user=BXL9nMgAAAAJ&hl=zh-CN"><i class="fab fa-google-scholar"></i></a>
-                    <!-- <a href="https://SOTAMak1r.github.io"><i class="fa-solid fa-user"></i></a> -->
+                    <a href="https://SOTAMak1r.github.io"><i class="fa-solid fa-user"></i></a>
                     <!-- <a href="chenjunyi.work@gmail.com"><i class="fa-solid fa-envelope"></i></a> -->
                 </div>
-                <p class="contact">Feel free to contact: 📮 chenjunyi.work@gmail.com</p>
+                <p class="contact">📧 chenjunyi.work@gmail.com</p>
             </div>
         </div>
     </header>
+
+    
+
 
     <!-- <nav>
         <a href="#Research" style="margin: 0 15px;">Research Interest</a>
@@ -309,7 +260,6 @@
         <a href="#Education" style="margin: 0 15px;">Education & Experience</a>
         <a href="#Awards" style="margin: 0 15px;">Awards & Service</a>
     </nav> -->
-
     <nav>
         <a href="#Research" class="nav-button">Research Interest</a>
         <a href="#Publications" class="nav-button">Publications</a>
@@ -317,17 +267,10 @@
         <a href="#Awards" class="nav-button">Awards</a>
     </nav>
 
-
     <!-- <hr> -->
     <section id="Research">
         <!-- <h2>👨💻 Research Interest</h2> -->
-        <!-- <h2>😍 Research Interest</h2> -->
-        <!-- <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-            <h2 style="margin: 0;">😍 Research Interest</h2>
-        </div> -->
-        <h2 style="margin-bottom: 30px; text-align: left;">
-            😍 Research Interest
-        </h2>
+        <h2>😍 Research Interest</h2>
         <!-- <div style="flex: 0 0 240px; position: relative"> -->
             <img src="figures/research_zip.png"  style="width: 100%; box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
         <!-- </div> -->
@@ -343,54 +286,15 @@
 
 
     <!-- <hr> -->
-
     <section id="Publications">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-            <h2 id="pub-header" style="margin: 0;">📢 Selected Publications</h2>
-            
-            <button id="toggle-btn" onclick="toggleAllPublications()" style="
-                padding: 6px 12px; 
-                font-size: 13px; 
-                cursor: pointer; 
-                background-color: transparent; 
-                border: 1px solid #d1d5da; 
-                border-radius: 6px; 
-                color: #0366d6; 
-                font-weight: 600;
-                transition: 0.2s;">
-                Show All
-            </button>
-        </div>
-
+        <h2>📢 Publications</h2>
         <div style="margin-bottom: 30px">
             * denotes equal contribution,  † denotes corresponding author
         </div>
 
-
         <h3 style="margin-bottom: 30px">
             👉️ Image/Video Generation
         </h3>
-
-        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
-            <div style="flex: 0 0 240px; position: relative">
-                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
-                            border-radius: 4px; font-size: 12px; z-index: 2;">
-                </div> -->
-                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-                    <source src="figures/teaser_vino.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="flex: 1">
-                <b style="color: #0366d6;">VINO: A Unified Visual Generator with Interleaved OmniModal Context</b>
-                <br>
-                <b>Junyi Chen</b>, Tong He, Zhoujie Fu, Pengfei Wan, Kun Gai, Weicai Ye†
-                <br>
-                [<a href="https://sotamak1r.github.io/VINO-web/">project page</a>]
-                [<a href="http://arxiv.org/abs/2601.02358">paper</a>]
-                [<a href="https://github.com/SOTAMak1r/VINO-code">code</a>]								
-                <br>
-            </div>
-        </div> 
 
         <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
             <div style="flex: 0 0 240px; position: relative">
@@ -412,10 +316,6 @@
                 <br>
             </div>
         </div> 
-
-        <div class="more-pubs" style="display: none;">
-            
-        </div>
 
 
         <h3 style="margin-bottom: 30px">
@@ -464,271 +364,210 @@
                 <br>
             </div>
         </div>
-        
-        <div class="more-pubs" style="display: none;">
-            
-            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
-                <div style="flex: 0 0 240px; position: relative">
-                    <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
-                                border-radius: 4px; font-size: 12px; z-index: 2;">
-                        ICLR 2025
-                    </div>
-                    <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-                        <source src="figures/teaser_gst.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div style="flex: 1">
-                    <b style="color: #0366d6;">Where Am I and What Will I See: An Auto-Regressive Model for Spatial Localization and View Prediction</b>
-                    <br>
-                    <b>Junyi Chen</b>, Di Huang†, Weicai Ye, Wanli Ouyang, Tong He†
-                    <br>
-                    [<a href="https://sotamak1r.github.io/gst/">project page</a>]
-                    [<a href="https://arxiv.org/abs/2410.18962">paper</a>]
-                    [<a href="https://github.com/SOTAMak1r/GST">code</a>]								
-                    <br>
-                </div>
-            </div>
-            
-            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
-                <div style="flex: 0 0 240px; position: relative">
-                    <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
-                                border-radius: 4px; font-size: 12px; z-index: 2;">
-                        ECCV 2024
-                    </div>
-                    <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-                        <source src="figures/teaser_gvgen.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div style="flex: 1">
-                    <b style="color: #0366d6;">GVGEN: Text-to-3D Generation with Volumetric Representation</b>
-                    <br>
-                    Xianglong He*, <b>Junyi Chen*</b>, Sida Peng, Di Huang, Yangguang Li, Xiaoshui Huang, Chun Yuan†, Wanli Ouyang, Tong He†
-                    <br>
-                        [<a href="https://sotamak1r.github.io/gvgen/">project page</a>]
-                        [<a href="https://arxiv.org/abs/2403.12957">paper</a>]
-                        [<a href="https://github.com/SOTAMak1r/GVGEN">code</a>]								
-                    <br>
-                </div>
-            </div>
 
-            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
-                <div style="flex: 0 0 240px; position: relative">
-                    <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
-                                border-radius: 4px; font-size: 12px; z-index: 2;">
-                    </div> -->
-                    <!-- <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative">
-                        <source src="figures/teaser_cosurfgs.mp4" type="video/mp4">
-                    </video> -->
-                    <img src="figures/teaser_meshcraft.png" width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-                </div>
-                <div style="flex: 1">
-                    <b style="color: #0366d6;">MeshCraft: Exploring Efficient and Controllable Mesh Generation with Flow-based DiTs</b>
-                    <br>
-                    Xianglong He, <b>Junyi Chen</b>, Di Huang, Zexiang Liu, Xiaoshui Huang, Wanli Ouyang, Chun Yuan†, Yangguang Li†
-                    <br>
-                    <!-- [<a href="https://gyy456.github.io/CoSurfGS/">project page</a>] -->
-                    [<a href="https://arxiv.org/abs/2503.23022">paper</a>]
-                    [<a href="https://github.com/XianglongHe/MeshCraft">code</a>]								
-                    <br>
-                </div>
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
+            <div style="flex: 0 0 240px; position: relative">
+                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                </div> -->
+                <!-- <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative">
+                    <source src="figures/teaser_cosurfgs.mp4" type="video/mp4">
+                </video> -->
+                <img src="figures/teaser_meshcraft.png" width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
             </div>
-
-        </div>
-
-        <div class="more-pubs" style="display: none;">
-            <h3 style="margin-bottom: 30px">
-                👉️ 3D/4D Reconstruction
-            </h3>
-            
-            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
-                <div style="flex: 0 0 240px; position: relative">
-                    <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
-                                border-radius: 4px; font-size: 12px; z-index: 2;">
-                    </div> -->
-                    <img src="figures/teaser_omniworld.png" width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-                </div>
-                <div style="flex: 1">
-                    <b style="color: #0366d6;">OmniWorld: A Multi-Domain and Multi-Modal Dataset for 4D World Modeling</b>
-                    <br>
-                    Yang Zhou, Yifan Wang, Jianjun Zhou, Wenzheng Chang, Haoyu Guo, Zizun Li, Kaijing Ma, Xinyue Li, Yating Wang, Haoyi Zhu, Mingyu Liu, Dingning Liu, Jiange Yang, Zhoujie Fu, <b>Junyi Chen</b>, Chunhua Shen, Jiangmiao Pang, Kaipeng Zhang, Tong He†
-                    <br>
-                    [<a href="https://yangzhou24.github.io/OmniWorld/">project page</a>]
-                    [<a href="https://arxiv.org/abs/2509.12201">paper</a>]
-                    [<a href="https://github.com/yangzhou24/OmniWorld">code</a>]								
-                    <br>
-                </div>
-            </div>
-
-            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
-                <div style="flex: 0 0 240px; position: relative">
-                    <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
-                                border-radius: 4px; font-size: 12px; z-index: 2;">
-                    </div> -->
-                    <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-                        <source src="figures/teaser_wint3r.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div style="flex: 1">
-                    <b style="color: #0366d6;">WinT3R: Window-Based Streaming Reconstruction with Camera Token Pool</b>
-                    <br>
-                    Zizun Li, Jianjun Zhou, Yifan Wang, Haoyu Guo, Wenzheng Chang, Yang Zhou, Haoyi Zhu, <b>Junyi Chen</b>, Chunhua Shen, Tong He†
-                    <br>
-                    [<a href="https://lizizun.github.io/WinT3R.github.io/">project page</a>]
-                    [<a href="https://arxiv.org/abs/2509.05296">paper</a>]
-                    [<a href="https://github.com/LiZizun/WinT3R">code</a>]								
-                    <br>
-                </div>
-            </div>
-
-            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
-                <div style="flex: 0 0 240px; position: relative">
-                    <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
-                                border-radius: 4px; font-size: 12px; z-index: 2;">
-                    </div> -->
-                    <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-                        <source src="figures/teaser_pi3.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div style="flex: 1">
-                    <b style="color: #0366d6;">&pi;³: Scalable Permutation-Equivariant Visual Geometry Learning</b>
-                    <br>
-                    Yifan Wang*, Jianjun Zhou*, Haoyi Zhu, Wenzheng Chang, Yang Zhou, Zizun Li, <b>Junyi Chen</b>, Jiangmiao Pang, Chunhua Shen, Tong He†
-                    <br>
-                    [<a href="https://yyfz.github.io/pi3/">project page</a>]
-                    [<a href="https://arxiv.org/abs/2507.13347">paper</a>]
-                    [<a href="https://github.com/yyfz/Pi3">code</a>]								
-                    <br>
-                </div>
-            </div>
-
-            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
-                <div style="flex: 0 0 240px; position: relative">
-                    <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
-                                border-radius: 4px; font-size: 12px; z-index: 2;">
-                    </div> -->
-                    <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-                        <source src="figures/teaser_cosurfgs.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div style="flex: 1">
-                    <b style="color: #0366d6;">CoSurfGS: Collaborative 3D Surface Gaussian Splatting with Distributed Learning for Large Scene Reconstruction</b>
-                    <br>
-                    Yuanyuan Gao, Yalun Dai, Hao Li, Weicai Ye†, <b>Junyi Chen</b>, Danpeng Chen, Dingwen Zhang†, Tong He, Guofeng Zhang, Junwei Han
-                    <br>
-                    [<a href="https://gyy456.github.io/CoSurfGS/">project page</a>]
-                    [<a href="https://arxiv.org/abs/2412.17612">paper</a>]
-                    [<a href="https://github.com/zju3dv/CoSurfGS">code</a>]								
-                    <br>
-                </div>
-            </div>
-            
-            <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
-                <div style="flex: 0 0 240px; position: relative">
-                    <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
-                                border-radius: 4px; font-size: 12px; z-index: 2;">
-                        AAAI 2025
-                    </div>
-                    <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-                        <source src="figures/teaser_gigags.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div style="flex: 1">
-                    <b style="color: #0366d6;">GigaGS: Scaling up Planar-Based 3D Gaussians for Large Scene Surface Reconstruction</b>
-                    <br>
-                    <b>Junyi Chen</b>, Weicai Ye†, Yifan Wang, Danpeng Chen, Di Huang, Wanli Ouyang, Guofeng Zhang, Yu Qiao, Tong He†
-                    <br>
-                    [<a href="https://open3dvlab.github.io/GigaGS/">project page</a>]
-                    [<a href="https://arxiv.org/abs/2409.06685">paper</a>]
-                    [<a href="https://github.com/Open3DVLab/GigaGS">code</a>]								
-                    <br>
-                </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">MeshCraft: Exploring Efficient and Controllable Mesh Generation with Flow-based DiTs</b>
+                <br>
+                Xianglong He, <b>Junyi Chen</b>, Di Huang, Zexiang Liu, Xiaoshui Huang, Wanli Ouyang, Chun Yuan†, Yangguang Li†
+                <br>
+                <!-- [<a href="https://gyy456.github.io/CoSurfGS/">project page</a>] -->
+                [<a href="https://arxiv.org/abs/2503.23022">paper</a>]
+                [<a href="https://github.com/XianglongHe/MeshCraft">code</a>]								
+                <br>
             </div>
         </div>
 
-        <script>
-            function toggleAllPublications() {
-                // 1. 找到所有带有 "more-pubs" class 的元素
-                var hiddenSections = document.querySelectorAll('.more-pubs');
-                var btn = document.getElementById("toggle-btn");
-                var header = document.getElementById("pub-header");
-                var isHidden = hiddenSections[0].style.display === "none";
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
+            <div style="flex: 0 0 240px; position: relative">
+                <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                    ICLR 2025
+                </div>
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_gst.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">Where Am I and What Will I See: An Auto-Regressive Model for Spatial Localization and View Prediction</b>
+                <br>
+                <b>Junyi Chen</b>, Di Huang†, Weicai Ye, Wanli Ouyang, Tong He†
+                <br>
+                [<a href="https://sotamak1r.github.io/gst/">project page</a>]
+                [<a href="https://arxiv.org/abs/2410.18962">paper</a>]
+                [<a href="https://github.com/SOTAMak1r/GST">code</a>]								
+                <br>
+            </div>
+        </div>
 
-                // 2. 循环遍历每一个 section 并切换状态
-                hiddenSections.forEach(function(section) {
-                    if (isHidden) {
-                        section.style.display = "block"; // 展开
-                    } else {
-                        section.style.display = "none";  // 隐藏
-                    }
-                });
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
+            <div style="flex: 0 0 240px; position: relative">
+                <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                    ECCV 2024
+                </div>
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_gvgen.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">GVGEN: Text-to-3D Generation with Volumetric Representation</b>
+                <br>
+                Xianglong He*, <b>Junyi Chen*</b>, Sida Peng, Di Huang, Yangguang Li, Xiaoshui Huang, Chun Yuan†, Wanli Ouyang, Tong He†
+                <br>
+                    [<a href="https://sotamak1r.github.io/gvgen/">project page</a>]
+                    [<a href="https://arxiv.org/abs/2403.12957">paper</a>]
+                    [<a href="https://github.com/SOTAMak1r/GVGEN">code</a>]								
+                <br>
+            </div>
+        </div>
 
-                // 3. 更新按钮和标题文字
-                if (isHidden) {
-                    btn.innerHTML = "Show Selected Only";
-                    header.innerHTML = "📢 All Publications";
-                } else {
-                    btn.innerHTML = "Show All";
-                    header.innerHTML = "📢 Selected Publications";
-                    
-                    // 可选：折叠时如果页面太长，可以自动滚回到顶部标题
-                    // header.scrollIntoView({behavior: "smooth"});
-                }
-            }
-        </script>
+
+        <h3 style="margin-bottom: 30px">
+            👉️ 3D/4D Reconstruction
+        </h3>
         
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
+            <div style="flex: 0 0 240px; position: relative">
+                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                </div> -->
+                <img src="figures/teaser_omniworld.png" width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">OmniWorld: A Multi-Domain and Multi-Modal Dataset for 4D World Modeling</b>
+                <br>
+                Yang Zhou, Yifan Wang, Jianjun Zhou, Wenzheng Chang, Haoyu Guo, Zizun Li, Kaijing Ma, Xinyue Li, Yating Wang, Haoyi Zhu, Mingyu Liu, Dingning Liu, Jiange Yang, Zhoujie Fu, <b>Junyi Chen</b>, Chunhua Shen, Jiangmiao Pang, Kaipeng Zhang, Tong He†
+                <br>
+                [<a href="https://yangzhou24.github.io/OmniWorld/">project page</a>]
+                [<a href="https://arxiv.org/abs/2509.12201">paper</a>]
+                [<a href="https://github.com/yangzhou24/OmniWorld">code</a>]								
+                <br>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
+            <div style="flex: 0 0 240px; position: relative">
+                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                </div> -->
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_wint3r.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">WinT3R: Window-Based Streaming Reconstruction with Camera Token Pool</b>
+                <br>
+                Zizun Li, Jianjun Zhou, Yifan Wang, Haoyu Guo, Wenzheng Chang, Yang Zhou, Haoyi Zhu, <b>Junyi Chen</b>, Chunhua Shen, Tong He†
+                <br>
+                [<a href="https://lizizun.github.io/WinT3R.github.io/">project page</a>]
+                [<a href="https://arxiv.org/abs/2509.05296">paper</a>]
+                [<a href="https://github.com/LiZizun/WinT3R">code</a>]								
+                <br>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
+            <div style="flex: 0 0 240px; position: relative">
+                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                </div> -->
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_pi3.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">&pi;³: Scalable Permutation-Equivariant Visual Geometry Learning</b>
+                <br>
+                Yifan Wang*, Jianjun Zhou*, Haoyi Zhu, Wenzheng Chang, Yang Zhou, Zizun Li, <b>Junyi Chen</b>, Jiangmiao Pang, Chunhua Shen, Tong He†
+                <br>
+                [<a href="https://yyfz.github.io/pi3/">project page</a>]
+                [<a href="https://arxiv.org/abs/2507.13347">paper</a>]
+                [<a href="https://github.com/yyfz/Pi3">code</a>]								
+                <br>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
+            <div style="flex: 0 0 240px; position: relative">
+                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                </div> -->
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_cosurfgs.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">CoSurfGS: Collaborative 3D Surface Gaussian Splatting with Distributed Learning for Large Scene Reconstruction</b>
+                <br>
+                Yuanyuan Gao, Yalun Dai, Hao Li, Weicai Ye†, <b>Junyi Chen</b>, Danpeng Chen, Dingwen Zhang†, Tong He, Guofeng Zhang, Junwei Han
+                <br>
+                [<a href="https://gyy456.github.io/CoSurfGS/">project page</a>]
+                [<a href="https://arxiv.org/abs/2412.17612">paper</a>]
+                [<a href="https://github.com/zju3dv/CoSurfGS">code</a>]								
+                <br>
+            </div>
+        </div>
+        
+
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
+            <div style="flex: 0 0 240px; position: relative">
+                <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                    AAAI 2025
+                </div>
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_gigags.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">GigaGS: Scaling up Planar-Based 3D Gaussians for Large Scene Surface Reconstruction</b>
+                <br>
+                <b>Junyi Chen</b>, Weicai Ye†, Yifan Wang, Danpeng Chen, Di Huang, Wanli Ouyang, Guofeng Zhang, Yu Qiao, Tong He†
+                <br>
+                [<a href="https://open3dvlab.github.io/GigaGS/">project page</a>]
+                [<a href="https://arxiv.org/abs/2409.06685">paper</a>]
+                [<a href="https://github.com/Open3DVLab/GigaGS">code</a>]								
+                <br>
+            </div>
+        </div>
+
+        
+
     </section>
 
 
+    <section id="Publications">
+        <h2>🤖 Projects</h2>
 
-    <section id="Projects">
-    
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
-        <h2 id="projects-header" style="margin: 0;">🤖 Selected Projects</h2>
-        
-        <button id="toggle-btn" onclick="toggleProjects()" style="
-            padding: 6px 12px; 
-            font-size: 13px; 
-            cursor: pointer; 
-            background-color: transparent; 
-            border: 1px solid #d1d5da; 
-            border-radius: 6px; 
-            color: #0366d6; 
-            font-weight: 600;
-            transition: 0.2s;">
-            Show All Projects
-        </button>
-    </div>
+        <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
+            <div style="flex: 0 0 240px; position: relative">
+                <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
+                            border-radius: 4px; font-size: 12px; z-index: 2;">
+                </div> -->
+                <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
+                    <source src="figures/teaser_infiniteforcing.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div style="flex: 1">
+                <b style="color: #0366d6;">Infinite-Forcing: Towards Infinite-Long Video Generation</b>
+                <br>
+                2025.9
+                <br>
+                [<a href="https://github.com/SOTAMak1r/Infinite-Forcing">code</a>]				
+                <br>
+            </div>
+        </div>   
 
-    <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">
-        <div style="flex: 0 0 240px; position: relative">
-            <img src="figures/teaser_tinysora2.png" width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-        </div>
-        <div style="flex: 1">
-            <b style="color: #0366d6;">Tiny-Sora2: Where Silent Video Generation Model Learns to Speak</b>
-            <br>
-            2025.12
-            <br>
-            [<a href="https://github.com/SOTAMak1r/Tiny-Sora2">code</a>]
-        </div>
-    </div>   
-
-    <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">
-        <div style="flex: 0 0 240px; position: relative">
-            <video id="r10k" autoplay muted loop playsinline width="240px" style="box-shadow: 4px 4px 8px #888; position: relative; border-radius: 8px">
-                <source src="figures/teaser_infiniteforcing.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div style="flex: 1">
-            <b style="color: #0366d6;">Infinite-Forcing: Towards Infinite-Long Video Generation</b>
-            <br>
-            2025.9
-            <br>
-            [<a href="https://github.com/SOTAMak1r/Infinite-Forcing">code</a>]              
-        </div>
-    </div>
-
-    <div id="more-projects" style="display: none;">
-        
         <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px;">  <!--background-color: #3695f44a; -->
             <div style="flex: 0 0 240px; position: relative">
                 <!-- <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; 
@@ -748,38 +587,16 @@
             </div>
         </div>  
 
+             
+        
 
-    </div>
+    </section>
 
-    <script>
-        function toggleProjects() {
-            var moreProjects = document.getElementById("more-projects");
-            var btn = document.getElementById("toggle-btn");
-            var header = document.getElementById("projects-header");
-
-            if (moreProjects.style.display === "none") {
-                moreProjects.style.display = "block";
-                btn.innerHTML = "Show Selected Only";
-                header.innerHTML = "🤖 All Projects";
-            } else {
-                moreProjects.style.display = "none";
-                btn.innerHTML = "Show All Projects";
-                header.innerHTML = "🤖 Selected Projects";
-            }
-        }
-    </script>
-
-</section>
     <!-- <hr> -->
 
-
-
-
     <section id="Education">
-        <!-- <h2>📖 Education & Experience</h2> -->
-        <h2 style="margin-bottom: 30px; text-align: left;">
-            📖 Education & Experience
-        </h2>
+        <h2>📖 Education & Experience</h2>
+
         <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 30px">
             <div style="flex: 0 0 240px">
                 <img src="figures/kling-ai-logo-hd.png" width="240">
@@ -787,7 +604,7 @@
             <div style="flex: 1">
                 <div style="display: flex; justify-content: space-between;">
                     <b>Kling Team, Kuaishou Technology</b>
-                    <span>2025.8 to 2025.12</span> 
+                    <span>2025.8 to present</span> 
                 </div>
                 <p>Research Intern</p>
                 <p>Unified MultiModal Video Generation</p>
@@ -805,7 +622,7 @@
                     <span>2023.1 to 2025.8</span> 
                 </div>
                 <p>Research Intern</p>
-                <p>3D/4D Generation | World Models</p>
+                <p>3D Generation | 3D Reconstruction | World Models | Generative Models</p>
                 <p>Supervisor: <a href="https://tonghe90.github.io/" style="margin: 0 2px">Tong He</a> & <a href="https://wlouyang.github.io/" style="margin: 0 2px">Wanli Ouyang</a></p>
             </div>
         </div>
@@ -847,10 +664,7 @@
 
 
     <section id="Awards">
-        <!-- <h2>🏆 Awards</h2> -->
-        <h2 style="margin-bottom: 30px; text-align: left;">
-            🏆 Awards
-        </h2>
+        <h2>🏆 Awards</h2>
         <ul style="list-style-type: none; padding-left: 0;">
             <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; line-height: 1.6;">
                 <b>Outstanding Graduate Thesis Award</b>
@@ -888,13 +702,10 @@
     </section>
 
     <section id="Misc">
-        <!-- <h2>📌 Misc</h2> -->
-         <h2 style="margin-bottom: 30px; text-align: left;">
-            📌 Misc
-        </h2>
+        <h2>📌 Misc</h2>
         <ul style="list-style-type: none; padding-left: 0;">
             <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; line-height: 1.6;">
-                <b>Reviewer: TPAMI, NeurIPS, AAAI, ICLR, CVPR</b> 
+                <b>Reviewer: TPAMI, NeurIPS, AAAI, ICLR</b> 
             </li>
 
             <ul style="list-style-type: none; padding-left: 0;">
