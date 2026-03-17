@@ -15,29 +15,37 @@
             background: url('./figures/bg.jpg') no-repeat center center fixed; 
             background-size: cover; 
         } */
-         /* 1. 这是一个独立的背景层，不会影响你网页原本的宽窄 */
-        body::before {
+        /* 1. 这是一个独立的背景层，不会影响你网页原本的宽窄 */
+        /* body::before {
             content: "";
             
-            /* 核心：强制固定在浏览器窗口，不随页面宽窄变化 */
             position: fixed; 
             top: 0;
             left: 0;
             
-            /* 强制铺满整个屏幕窗口 */
             width: 100vw; 
             height: 100vh; 
             
-            /* 放在最底层 */
             z-index: -999; 
             
-            /* 你的背景设置 */
             background: url('./figures/bg.jpg') no-repeat center center;
             background-size: cover;
                         
-            /* 避免这个背景层挡住鼠标点击 */
             pointer-events: none; 
+        } */
+        
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -999; /* 放在最底层 */
+            background-color: #f4f6f9; /* 浅色底色 */
         }
+
+
+
 
         /* 2. 只有这个是需要加在 html 上的，用于决定背景变透明后透出的底色 */
         html {
@@ -284,6 +292,7 @@
     </style>
 </head>
 <body>
+    <div id="particles-js"></div>
 
     <header class="profile-container">
         <div class="profile-content">
@@ -1019,6 +1028,32 @@
             var d = String(dt.getDate()).padStart(2, '0');
             document.getElementById('last-updated').textContent = y + '-' + m + '-' + d;
         })();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+        "particles": {
+            "number": {"value": 60, "density": {"enable": true, "value_area": 800}},
+            "color": {"value": "#6495ED"}, /* 呼应你主页的蓝色 */
+            "shape": {"type": "circle"},
+            "opacity": {"value": 0.5},
+            "size": {"value": 3},
+            "line_linked": {"enable": true, "distance": 150, "color": "#6495ED", "opacity": 0.4, "width": 1},
+            "move": {"enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out"}
+        },
+        "interactivity": {
+            "detect_on": "window",
+            "events": {
+            "onhover": {"enable": true, "mode": "grab"},
+            "onclick": {"enable": true, "mode": "push"}
+            },
+            "modes": {
+            "grab": {"distance": 140, "line_linked": {"opacity": 1}}
+            }
+        },
+        "retina_detect": true
+        });
     </script>
 
 </body>
