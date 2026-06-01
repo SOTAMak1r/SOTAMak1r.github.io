@@ -786,32 +786,144 @@
         .soccer-card li { color: rgba(255,255,255,.85); border-color: rgba(255,255,255,.12); }
         .soccer-card li .y { color: var(--accent-lime); }
         .soccer-arena {
-            position: relative; height: 130px; margin: 16px -30px -30px;
-            background: radial-gradient(ellipse at center, rgba(255,255,255,.08), transparent 70%);
+            position: relative; height: 200px; margin: 16px -30px -30px;
+            background:
+                /* center circle */
+                radial-gradient(circle at 50% 100%, transparent 58px, rgba(255,255,255,.18) 58px 60px, transparent 60px),
+                /* center spot */
+                radial-gradient(circle at 50% 100%, rgba(255,255,255,.5) 0 3px, transparent 4px),
+                /* center line */
+                linear-gradient(to right, transparent calc(50% - 1px), rgba(255,255,255,.15) calc(50% - 1px), rgba(255,255,255,.15) calc(50% + 1px), transparent calc(50% + 1px)),
+                /* turf stripes */
+                repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 40px, transparent 40px 80px),
+                radial-gradient(ellipse at center, rgba(255,255,255,.08), transparent 70%);
             border-top: 1px dashed rgba(255,255,255,.15);
             cursor: crosshair; user-select: none; overflow: hidden;
+            transition: background-color .25s var(--ease);
+        }
+        .soccer-arena.flash {
+            animation: goalFlash .6s var(--ease);
+        }
+        @keyframes goalFlash {
+            0%   { box-shadow: inset 0 0 0 0 rgba(212,255,60,0); }
+            40%  { box-shadow: inset 0 0 80px 4px rgba(212,255,60,.55); }
+            100% { box-shadow: inset 0 0 0 0 rgba(212,255,60,0); }
         }
         .soccer-arena .hint {
             position: absolute; top: 12px; left: 16px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px; color: rgba(255,255,255,.55);
             letter-spacing: 0.1em; text-transform: uppercase; pointer-events: none;
+            display: flex; gap: 14px; align-items: center;
+        }
+        .soccer-arena .hint .timer {
+            color: var(--accent-warm); font-weight: 600;
         }
         .soccer-arena .score {
             position: absolute; top: 12px; right: 16px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 12px; color: var(--accent-lime); font-weight: 600;
             pointer-events: none;
+            display: flex; gap: 12px; align-items: center;
         }
+        .soccer-arena .score .miss { color: rgba(255,120,120,.85); }
+        .soccer-arena .reset-btn {
+            position: absolute; bottom: 10px; right: 14px;
+            background: rgba(0,0,0,.35);
+            border: 1px solid rgba(255,255,255,.2);
+            color: rgba(255,255,255,.85);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px; font-weight: 600;
+            padding: 5px 10px; border-radius: 999px;
+            cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase;
+            transition: background .25s var(--ease), color .25s var(--ease), transform .25s var(--ease-spring);
+            z-index: 5;
+        }
+        .soccer-arena .reset-btn:hover {
+            background: var(--accent-lime); color: var(--ink); transform: scale(1.06);
+        }
+
+        /* === goal === */
+        .soccer-goal {
+            position: absolute;
+            top: 50%; left: 14px;
+            transform: translateY(-50%);
+            width: 18px; height: 80px;
+            background:
+                /* net */
+                repeating-linear-gradient(0deg, rgba(255,255,255,.22) 0 1px, transparent 1px 8px),
+                repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 1px, transparent 1px 8px),
+                rgba(255,255,255,.04);
+            border: 2px solid #fff;
+            border-right: 0;
+            border-radius: 4px 0 0 4px;
+            box-shadow: -4px 0 12px rgba(255,255,255,.08);
+            pointer-events: none;
+        }
+        .soccer-goal::before {
+            /* goal line glow */
+            content: ""; position: absolute;
+            top: -8px; bottom: -8px; right: -2px; width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--accent-lime), transparent);
+            opacity: 0;
+            transition: opacity .3s var(--ease);
+        }
+        .soccer-arena.flash .soccer-goal::before { opacity: 1; }
+
+        /* keeper */
+        .soccer-keeper {
+            position: absolute;
+            left: 36px;
+            width: 14px; height: 30px;
+            border-radius: 4px;
+            background: linear-gradient(180deg, #ffd84a 0%, #f08c00 100%);
+            box-shadow: 0 3px 6px rgba(0,0,0,.35);
+            pointer-events: none;
+            transition: transform .25s var(--ease);
+        }
+        .soccer-keeper::before {
+            /* head */
+            content: ""; position: absolute;
+            top: -8px; left: 50%; transform: translateX(-50%);
+            width: 9px; height: 9px; border-radius: 50%;
+            background: #f5d6a8;
+        }
+
+        /* goal banner */
+        .soccer-goal-banner {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%) scale(0.6);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; font-style: italic;
+            font-size: 56px;
+            color: var(--accent-lime);
+            text-shadow: 0 4px 22px rgba(212,255,60,.55), 0 2px 0 rgba(0,0,0,.35);
+            letter-spacing: -0.04em;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 4;
+        }
+        .soccer-goal-banner.show {
+            animation: goalPop .8s var(--ease-spring) forwards;
+        }
+        @keyframes goalPop {
+            0%   { opacity: 0; transform: translate(-50%,-50%) scale(0.4) rotate(-12deg); }
+            45%  { opacity: 1; transform: translate(-50%,-50%) scale(1.15) rotate(-4deg); }
+            70%  { opacity: 1; transform: translate(-50%,-50%) scale(1) rotate(-2deg); }
+            100% { opacity: 0; transform: translate(-50%,-50%) scale(1.05) rotate(0deg); }
+        }
+
         .soccer-ball {
-            position: absolute; width: 26px; height: 26px;
+            position: absolute; width: 22px; height: 22px;
             border-radius: 50%;
             background: radial-gradient(circle at 35% 35%, #fff 0%, #fff 50%, #c8c8c8 100%);
             box-shadow: 0 4px 10px rgba(0,0,0,.4), inset 0 -4px 6px rgba(0,0,0,.2);
             top: 50%; left: 50%; transform: translate(-50%,-50%);
-            cursor: pointer; transition: transform .15s var(--ease);
+            cursor: pointer; will-change: transform;
             display: flex; align-items: center; justify-content: center;
-            font-size: 22px;
+            font-size: 18px;
+            z-index: 3;
         }
         @media (max-width: 760px) { .misc-grid { grid-template-columns: 1fr; } }
 
@@ -886,7 +998,7 @@
             <a href="#experience">Experience</a>
             <a href="#awards">Awards</a>
             <a href="#misc">Misc</a>
-            <!-- <a href="./notes/">Notes</a> -->
+            <a href="./notes/">Notes</a>
         </div>
     </nav>
 
@@ -1020,7 +1132,22 @@
         <div class="group-label"><span class="dot"></span> Image / Video Generation</div>
 
         <div class="pub-list">
-            
+            <!-- <div class="pub-card">
+                <div class="pub-media">
+                    <video autoplay muted loop playsinline>
+                        <source src="figures/teaser_repforcing.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div>
+                    <div class="pub-title">Beyond Distribution Matching: Self-Supervised Representation Forcing for Few-Step Video Generation</div>
+                    <div class="pub-authors"><b>Junyi Chen</b>, Haiyu Zhang, Zhoujie Fu, Tengfei Wang†, Chunchao Guo</div>
+                    <div class="pub-links">
+                        <a href="https://sotamak1r.github.io/Rep-Forcing-web/">Project</a>
+                        <a href="http://arxiv.org/abs/2601.02358">Paper</a>
+                        <a href="https://github.com/SOTAMak1r/Rep-Forcing">Code</a>
+                    </div>
+                </div>
+            </div> -->
 
             <div class="pub-card">
                 <div class="pub-media">
@@ -1405,9 +1532,19 @@
                     
                 </ul>
                 <div class="soccer-arena" id="soccerArena">
-                    <span class="hint">⚽ kick the ball</span>
-                    <span class="score" id="soccerScore">GOALS: 0</span>
+                    <span class="hint">
+                        <span>⚽ aim for the goal →</span>
+                        <span class="timer" id="soccerTimer">∞</span>
+                    </span>
+                    <span class="score" id="soccerScore">
+                        <span>GOALS: <span id="soccerGoals">0</span></span>
+                        <span class="miss">MISS: <span id="soccerMiss">0</span></span>
+                    </span>
+                    <div class="soccer-goal" id="soccerGoal"></div>
+                    <div class="soccer-keeper" id="soccerKeeper"></div>
                     <div class="soccer-ball" id="soccerBall">⚽</div>
+                    <div class="soccer-goal-banner" id="soccerBanner">GOAL!</div>
+                    <button class="reset-btn" id="soccerReset" type="button">Reset</button>
                 </div>
             </div>
         </div>
@@ -1635,48 +1772,270 @@
 
         // ---------- soccer mini-game ----------
         (function() {
-            var arena = document.getElementById('soccerArena');
-            var ball  = document.getElementById('soccerBall');
-            var score = document.getElementById('soccerScore');
-            if (!arena || !ball || !score) return;
-            var goals = 0;
-            var x = 0, y = 0, vx = 0, vy = 0;
-            var w, h;
-            function setup() {
-                var r = arena.getBoundingClientRect();
-                w = r.width; h = r.height;
-                x = w/2; y = h/2;
-                ball.style.left = x + 'px';
-                ball.style.top  = y + 'px';
-                ball.style.transform = 'translate(-50%,-50%)';
-            }
-            setup();
-            window.addEventListener('resize', setup);
+            var arena   = document.getElementById('soccerArena');
+            var ball    = document.getElementById('soccerBall');
+            var keeper  = document.getElementById('soccerKeeper');
+            var banner  = document.getElementById('soccerBanner');
+            var resetBtn= document.getElementById('soccerReset');
+            var goalsEl = document.getElementById('soccerGoals');
+            var missEl  = document.getElementById('soccerMiss');
+            var timerEl = document.getElementById('soccerTimer');
+            if (!arena || !ball || !keeper) return;
 
-            function tick() {
-                x += vx; y += vy;
-                vx *= 0.94; vy *= 0.94;
-                if (x < 14) { x = 14; vx *= -0.6; }
-                if (x > w - 14) { x = w - 14; vx *= -0.6; }
-                if (y < 14) { y = 14; vy *= -0.6; goals++; score.textContent = 'GOALS: ' + goals; }
-                if (y > h - 14) { y = h - 14; vy *= -0.6; }
+            // ---- constants
+            var BALL_R   = 11;
+            var KEEPER_W = 14, KEEPER_H = 30;
+            var GOAL_LEFT = 14;          // matches CSS .soccer-goal left
+            var GOAL_W   = 18;
+            var GOAL_HALF= 40;           // half-height of goal (80/2)
+            var KEEPER_X = 36;           // matches CSS .soccer-keeper left
+            var FRICTION = 0.965;
+            var STOP_EPS = 0.05;
+            var ROUND_TIME = 30;         // 30s round
+            var MAX_SPEED = 18;
+
+            var w, h;
+            var x, y, vx, vy, rot, vrot;
+            var goals = 0, miss = 0;
+            var inGoal = false;
+            var roundActive = false;
+            var roundStart = 0;
+            var rafId = null;
+            var keeperT = 0;             // keeper time accumulator
+            var lastTs = 0;
+            var audioCtx = null;
+
+            function rect() { return arena.getBoundingClientRect(); }
+            function size() {
+                var r = rect();
+                w = r.width; h = r.height;
+            }
+
+            function reset(full) {
+                size();
+                x = w / 2; y = h / 2;
+                vx = 0; vy = 0; rot = 0; vrot = 0;
+                inGoal = false;
+                if (full) {
+                    goals = 0; miss = 0;
+                    goalsEl.textContent = '0';
+                    missEl.textContent  = '0';
+                    roundActive = false;
+                    roundStart = 0;
+                    timerEl.textContent = ROUND_TIME + 's';
+                }
+                drawBall();
+            }
+
+            function drawBall() {
                 ball.style.left = x + 'px';
                 ball.style.top  = y + 'px';
-                if (Math.abs(vx) > 0.05 || Math.abs(vy) > 0.05) requestAnimationFrame(tick);
+                ball.style.transform = 'translate(-50%,-50%) rotate(' + rot + 'deg)';
             }
+
+            function moveKeeper(dt) {
+                keeperT += dt;
+                // sinusoidal patrol within the goal mouth
+                var amp = GOAL_HALF - KEEPER_H/2 - 2;
+                var ky = h/2 + Math.sin(keeperT * 0.0028) * amp - KEEPER_H/2;
+                keeper.style.top = ky + 'px';
+            }
+
+            function beep(freq, dur, type, vol) {
+                try {
+                    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    var o = audioCtx.createOscillator();
+                    var g = audioCtx.createGain();
+                    o.type = type || 'sine';
+                    o.frequency.value = freq;
+                    g.gain.value = vol || 0.06;
+                    o.connect(g).connect(audioCtx.destination);
+                    o.start();
+                    g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+                    o.stop(audioCtx.currentTime + dur);
+                } catch (e) {}
+            }
+
+            function showBanner(text, color) {
+                banner.textContent = text;
+                banner.style.color = color || 'var(--accent-lime)';
+                banner.classList.remove('show');
+                // force reflow so animation can replay
+                void banner.offsetWidth;
+                banner.classList.add('show');
+            }
+
+            function flashArena() {
+                arena.classList.remove('flash');
+                void arena.offsetWidth;
+                arena.classList.add('flash');
+            }
+
+            function onGoal() {
+                if (inGoal) return;
+                inGoal = true;
+                goals++;
+                goalsEl.textContent = goals;
+                showBanner('GOAL!', 'var(--accent-lime)');
+                flashArena();
+                // celebratory chord
+                beep(523, 0.12, 'square', 0.05);
+                setTimeout(function(){ beep(659, 0.14, 'square', 0.05); }, 90);
+                setTimeout(function(){ beep(784, 0.22, 'square', 0.05); }, 200);
+                // reset ball after a moment
+                setTimeout(function() { reset(false); }, 700);
+            }
+
+            function onMiss(reason) {
+                if (inGoal) return;
+                miss++;
+                missEl.textContent = miss;
+                showBanner(reason || 'MISS', '#ff7878');
+                beep(180, 0.25, 'sawtooth', 0.04);
+            }
+
+            function physics(dt) {
+                // keeper movement
+                moveKeeper(dt);
+
+                // integrate
+                x += vx; y += vy;
+                rot += vrot;
+
+                // friction
+                vx *= FRICTION; vy *= FRICTION; vrot *= FRICTION;
+
+                // walls (right / top / bottom)
+                if (x > w - BALL_R) { x = w - BALL_R; vx *= -0.55; vrot *= -0.6; }
+                if (y < BALL_R)     { y = BALL_R;     vy *= -0.55; }
+                if (y > h - BALL_R) { y = h - BALL_R; vy *= -0.55; }
+
+                // keeper collision (simple AABB-vs-circle)
+                var kRect = keeper.getBoundingClientRect();
+                var aRect = rect();
+                var kx = kRect.left - aRect.left;
+                var ky = kRect.top  - aRect.top;
+                var kw = kRect.width, kh = kRect.height;
+                var nx = Math.max(kx, Math.min(x, kx + kw));
+                var ny = Math.max(ky, Math.min(y, ky + kh));
+                var ddx = x - nx, ddy = y - ny;
+                if (ddx*ddx + ddy*ddy < BALL_R*BALL_R) {
+                    // bounce off keeper
+                    if (Math.abs(ddx) > Math.abs(ddy)) {
+                        vx = (ddx > 0 ? 1 : -1) * Math.max(Math.abs(vx), 4) * 0.9;
+                        x = nx + (ddx > 0 ? BALL_R : -BALL_R);
+                    } else {
+                        vy = (ddy > 0 ? 1 : -1) * Math.max(Math.abs(vy), 4) * 0.9;
+                        y = ny + (ddy > 0 ? BALL_R : -BALL_R);
+                    }
+                    vrot += vx * 1.2;
+                    onMiss('SAVED!');
+                    beep(300, 0.1, 'square', 0.05);
+                }
+
+                // goal check: ball reaches left edge of goal post
+                var goalRight = GOAL_LEFT + GOAL_W;
+                if (x - BALL_R < goalRight) {
+                    var goalTop    = h/2 - GOAL_HALF;
+                    var goalBottom = h/2 + GOAL_HALF;
+                    if (y > goalTop && y < goalBottom) {
+                        // entered the goal!
+                        onGoal();
+                        return; // stop further processing this frame
+                    } else {
+                        // hit the post / wide
+                        x = goalRight + BALL_R;
+                        vx *= -0.55;
+                        vrot *= -0.6;
+                        if (Math.abs(vx) + Math.abs(vy) > 2) {
+                            onMiss('WIDE');
+                        }
+                    }
+                }
+
+                drawBall();
+            }
+
+            function loop(ts) {
+                var dt = lastTs ? (ts - lastTs) : 16;
+                lastTs = ts;
+
+                // round timer
+                if (roundActive) {
+                    var elapsed = (ts - roundStart) / 1000;
+                    var remain = Math.max(0, ROUND_TIME - elapsed);
+                    timerEl.textContent = remain.toFixed(1) + 's';
+                    if (remain <= 0) {
+                        roundActive = false;
+                        timerEl.textContent = "TIME!";
+                        showBanner('FT  ' + goals + ':' + miss, 'var(--accent-warm)');
+                        beep(220, 0.5, 'triangle', 0.05);
+                    }
+                }
+
+                physics(dt);
+
+                var moving = Math.abs(vx) > STOP_EPS || Math.abs(vy) > STOP_EPS;
+                if (moving || roundActive) {
+                    rafId = requestAnimationFrame(loop);
+                } else {
+                    rafId = null;
+                    lastTs = 0;
+                }
+            }
+
+            function startRound() {
+                if (roundActive) return;
+                roundActive = true;
+                roundStart = performance.now();
+                lastTs = roundStart;
+                if (!rafId) rafId = requestAnimationFrame(loop);
+            }
+
+            function ensureLoop() {
+                if (!rafId) {
+                    lastTs = 0;
+                    rafId = requestAnimationFrame(loop);
+                }
+            }
+
             function kick(e) {
-                var r = arena.getBoundingClientRect();
+                var r = rect();
                 var p = (e.touches ? e.touches[0] : e);
                 var px = p.clientX - r.left;
                 var py = p.clientY - r.top;
                 var dx = x - px, dy = y - py;
                 var dist = Math.max(8, Math.sqrt(dx*dx + dy*dy));
-                vx += (dx / dist) * 8;
-                vy += (dy / dist) * 8;
-                requestAnimationFrame(tick);
+                var power = Math.min(MAX_SPEED, 9 + (200 / dist) * 1.2);
+                vx += (dx / dist) * power;
+                vy += (dy / dist) * power;
+                // clamp speed
+                var sp = Math.sqrt(vx*vx + vy*vy);
+                if (sp > MAX_SPEED) { vx = vx / sp * MAX_SPEED; vy = vy / sp * MAX_SPEED; }
+                vrot += (Math.random() - 0.5) * 30;
+                inGoal = false;
+                beep(420, 0.05, 'square', 0.04);
+                if (!roundActive && goals === 0 && miss === 0) startRound();
+                ensureLoop();
             }
-            arena.addEventListener('click', kick);
-            arena.addEventListener('touchstart', function(e) { kick(e); e.preventDefault(); }, { passive: false });
+
+            // init
+            reset(true);
+            window.addEventListener('resize', function() { reset(false); });
+
+            arena.addEventListener('click', function(e) {
+                if (e.target === resetBtn) return;
+                kick(e);
+            });
+            arena.addEventListener('touchstart', function(e) {
+                if (e.target === resetBtn) return;
+                kick(e); e.preventDefault();
+            }, { passive: false });
+            resetBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                reset(true);
+                showBanner('NEW MATCH', 'var(--accent-warm)');
+            });
         })();
 
         // ---------- interactive pub cards: 3D tilt + spotlight + CTA + index ----------
